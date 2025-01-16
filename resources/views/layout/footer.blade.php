@@ -1,1 +1,1 @@
-<h1>Day la footer</h1>
+{{-- <h1>Day la footer</h1> --}}

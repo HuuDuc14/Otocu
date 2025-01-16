@@ -25,8 +25,12 @@
     <script src="js/sb-admin-2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+<<<<<<< HEAD
 <body id="page-top">
     {{-- @include('layout.app')
+=======
+<body style="width:100%">
+>>>>>>> b1884fc7ee842565579cca2514fce0ac7e1e3d2f
     @include('layout.navbar')
     @yield('content')
     @include('layout.footer') --}}

@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('staff', function (Blueprint $table) {
-            $table->id();
-            $table->string('username', 55);
-            $table->string('email', 255);
-            $table->string('password', 255);
-            $table->timestamps();
+        Schema::table('car_brand', function (Blueprint $table) {
+            $table->string('logo', 255);
         });
     }
 
@@ -25,6 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('staff');
+        //
     }
 };

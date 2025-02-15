@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -9,56 +10,56 @@ class NhanVienController extends Controller
 {
     public function index()
     {
-        $users = User::paginate(1);
-        return view('pages.nhanvien.index')->with('users', $users);
+        $staffs = Staff::paginate(5);
+        return view('pages.admin.nhanvien.index')->with('staffs', $staffs);
     }
 
     public function search(Request $request)
     {
         if ($request->input('search')) {
-            $users = User::where(function ($query) use ($request) {
-                $query->where('name', 'LIKE', '%' . $request->input('search') . '%')
+            $staffs = Staff::where(function ($query) use ($request) {
+                $query->where('username', 'LIKE', '%' . $request->input('search') . '%')
                       ->orWhere('email', 'LIKE', '%' . $request->input('search') . '%');
-            })->paginate(1);
+            })->paginate(5);
         } else {
-            $users = User::paginate(1);
+            $staffs = Staff::paginate(5);
         }
     
-        return view('pages.nhanvien.index')->with('users', $users);
+        return view('pages.admin.nhanvien.index')->with('staffs', $staffs);
     }
     
 
 
     public function create()
     {
-        return view('pages.nhanvien.create');
+        return view('pages.admin.nhanvien.create');
     }
 
     public function store(Request $request)
     {
-
         // Validate the incoming request data
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
+            'username' => 'required|string|max:255',
+            'email' => 'required|email|unique:staff,email', // Chú ý sửa 'users' thành 'staff'
+            'password' => 'required|min:6',
         ], [
-            'name.required' => 'Tên không được bỏ trống.',
-            'name.string' => 'Tên phải là một chuỗi ký tự.',
-            'name.max' => 'Tên không được vượt quá 255 ký tự.',
+            'username.required' => 'Tên không được bỏ trống.',
+            'username.string' => 'Tên phải là một chuỗi ký tự.',
+            'username.max' => 'Tên không được vượt quá 255 ký tự.',
             'email.required' => 'Email không được bỏ trống.',
             'email.email' => 'Email phải có định dạng hợp lệ.',
             'email.unique' => 'Email đã được sử dụng. Vui lòng chọn một email khác.'
         ]);
-        // dd('vhaj');
+    
         try {
-
             // Create the user
-            $a = User::create([
-                'name' => $validated['name'],
+            $staff = Staff::create([
+                'username' => $validated['username'],
                 'email' => $validated['email'],
-                'password' => 'password', // Hash the password
+                'password' => bcrypt($validated['password']), // Hash the password for security
             ]);
 
+    
             // Redirect with a success message
             return redirect()->route('nhanvien.index')->with('success', 'Người dùng được tạo thành công!');
         } catch (\Exception $e) {
@@ -69,39 +70,45 @@ class NhanVienController extends Controller
 
     public function edit($id) {
         // dd($id);
-        $user = User::findOrFail($id);
-        // dd($user);
+        $staff = Staff::findOrFail($id);
+        // dd($staffs);
 
-        return view('pages.nhanvien.edit')->with('user', $user);
+        return view('pages.admin.nhanvien.edit')->with('staff', $staff);
     }
 
     public function update(Request $request){
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email',
+            'username' => 'required|string|max:255',
+            'email' => 'required|email', // Chú ý sửa 'users' thành 'staff'
         ], [
-            'name.required' => 'Tên không được bỏ trống.',
-            'name.string' => 'Tên phải là một chuỗi ký tự.',
-            'name.max' => 'Tên không được vượt quá 255 ký tự.',
+            'username.required' => 'Tên không được bỏ trống.',
+            'username.string' => 'Tên phải là một chuỗi ký tự.',
+            'username.max' => 'Tên không được vượt quá 255 ký tự.',
             'email.required' => 'Email không được bỏ trống.',
             'email.email' => 'Email phải có định dạng hợp lệ.',
         ]);
         // dd('vhaj');
         try {
-            $user = User::findOrFail($request->input('id'));
+            $staff = Staff::findOrFail($request->input('id'));
    
-            // Create the user
-            $user->update([
-                'name' => $validated['name'],
+            // Create the staff
+            $staff->update([
+                'username' => $validated['username'],
                 'email' => $validated['email'],
-                'password' => 'password', // Hash the password
+                'password' => bcrypt($validated['password']), // Hash the password for security
             ]);
             // Redirect with a success message
-            return redirect()->route('nhanvien.index')->with('success', 'Người dùng được tạo thành công!');
+            return redirect()->route('nhanvien.index')->with('success', 'Nhân viên được tạo thành công!');
         } catch (\Exception $e) {
             // Redirect with an error message if something goes wrong
-            return redirect()->back()->with('error', 'Có lỗi xảy ra khi tạo người dùng. Vui lòng thử lại!');
+            return redirect()->back()->with('error', 'Có lỗi xảy ra khi tạo nhân viên. Vui lòng thử lại!');
         }
+    }
+
+    public function delete($id)  {
+        $staff = Staff::findOrFail($id);
+        $staff->delete();
+        return redirect()->route('nhanvien.index')->with('success', 'Xóa phòng trọ thành công!');
     }
 
 }

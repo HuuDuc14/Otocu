@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('xem_sau', function (Blueprint $table) {
-            $table->id('id_xem_sau');
-            $table->unsignedBigInteger('id_nguoi_dung');
-            $table->unsignedBigInteger('id_bai_dang');
+        Schema::create('see_later', function (Blueprint $table) {  //xem sau
+            $table->id();
+            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_post');
             $table->timestamps();
 
             // Foreign keys
-            $table->foreign('id_nguoi_dung')->references('id_nguoi_dung')->on('nguoi_dung');
-            $table->foreign('id_bai_dang')->references('id_bai_dang')->on('bai_dang');
+            $table->foreign('id_user')->references('id')->on('user');
+            $table->foreign('id_post')->references('id')->on('post');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('xem_sau');
+        Schema::dropIfExists('see_later');
     }
 };

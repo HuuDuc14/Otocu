@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\SavePost;
 use App\Models\User;
 use Auth;
@@ -101,5 +102,14 @@ class HomeController extends Controller
 
         $car->delete(); // Xóa bản ghi
         return redirect()->route('save.index');
+    }
+
+    public function myPost()
+    {
+        $posts = Post::with(['address', 'carBrand', 'designCar'])
+            ->where('id_user', 1)
+            ->paginate(5);
+
+        return view('pages.user.my-post', compact('posts'));
     }
 }

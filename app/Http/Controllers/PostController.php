@@ -77,7 +77,7 @@ class PostController extends Controller
                 'mau_xe' => $validated['mau_xe'],
                 'number_seats' => $validated['number_seats'],
                 'status' => 'chờ duyệt',
-                'id_user' => 6,
+                'id_user' => 1,
             ]);
 
 
@@ -148,5 +148,75 @@ class PostController extends Controller
         }
     
         return view('pages.admin.post.index', compact('posts', 'flag'));
+    }
+
+    public function edit($id) {
+
+        $post = Post::with(['carBrand', 'designCar', 'address', 'user'])
+                ->findOrFail($id);
+
+        $brand_cars = BrandCar::all();
+        $design_cars = DesignCar::all();
+        $address = Address::all();
+
+        return view('pages.user.edit-post', compact('post', 'brand_cars', 'design_cars', 'address'));
+    }
+
+    public function update(Request $request){
+        $validated = $request->validate([
+            'title' => 'required',
+            'car_brand' => 'required',
+            'design_car' => 'required',
+            'address' => 'required',
+            'fuel_type' => 'required',
+            'gearbox' => 'required',
+            'url_picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // validate ảnh
+            'price' => 'required',
+            'year' => 'required',
+            'mileage' => 'required',
+            'mau_xe' => 'required',
+            'number_seats' => 'required',
+        ], [
+            'title.required' => 'Title không được bỏ trống.',
+            'url_picture.required' => 'Đường dẫn ảnh không được bỏ trống.',
+            'price.required' => 'Giá không được bỏ trống.',
+            'year.required' => 'Năm không được bỏ trống.',
+            'mileage.required' => 'Số km đã đi không được bỏ trống.',
+            'mau_xe.required' => 'Màu xe không được bỏ trống.',
+            'number_seats.required' => 'Số chỗ ngồi không được bỏ trống.',
+        ]);
+        // dd('vhaj');
+        try {
+            $imagePath = null; // Định nghĩa trước để tránh lỗi undefined variable
+            if ($request->hasFile('url_picture')) {
+                $image = $request->file('url_picture');
+                $imagePath = $image->store('images', 'public');
+            }
+
+            $post = Post::findOrFail($request->input('id'));
+   
+            // Create the staff
+            $post->update([
+                'title' => $validated['title'],
+                'id_car_brand' => $validated['car_brand'],
+                'id_design_car' => $validated['design_car'],
+                'id_address' => $validated['address'],
+                'fuel_type' => $validated['fuel_type'],
+                'gearbox' => $validated['gearbox'],
+                'url_picture' => $imagePath,
+                'price' => $validated['price'],
+                'year' => $validated['year'],
+                'mileage' => $validated['mileage'],
+                'mau_xe' => $validated['mau_xe'],
+                'number_seats' => $validated['number_seats'],
+                'status' => 'chờ duyệt',
+                'id_user' => 1, // Hash the password for security
+            ]);
+            // Redirect with a success message
+            return redirect()->route('mypost')->with('success', 'Sửa bài đăng thành công!');
+        } catch (\Exception $e) {
+            // Redirect with an error message if something goes wrong
+            return redirect()->back()->with('error', 'Có lỗi xảy ra khi sửa bài đăng. Vui lòng thử lại!');
+        }
     }
 }

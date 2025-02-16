@@ -180,6 +180,10 @@
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                 </a>
+                <a class="dropdown-item" href="{{route('mypost')}}">
+                    <i class="fa-solid fa-file-pen fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Bài đăng của tôi
+                </a>
                 <a class="dropdown-item" href="{{route('save.index')}}">
                     <i class="fa-solid fa-bookmark fa-sm fa-fw mr-2 text-gray-400"></i>
                     Đã lưu

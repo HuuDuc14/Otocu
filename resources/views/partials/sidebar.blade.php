@@ -45,7 +45,7 @@
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('post.index')}}">
-            <i class="fa-solid fa-signs-post"></i>
+            <i class="fa-solid fa-file-pen"></i>
             <span>Post</span></a>
     </li>
     <hr class="sidebar-divider">

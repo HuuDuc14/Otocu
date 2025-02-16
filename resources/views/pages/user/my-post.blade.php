@@ -2,15 +2,10 @@
 @section('content')
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Bài đăng</h1>
+            <h1 class="h3 mb-0 text-gray-800">Bài đăng của tôi</h1>
             <div class="d-flex justify-content-end">
-                <a href="{{route('post.accepted')}}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm ">Bài
-                    đăng đã được duyệt</a>
-                <a href="{{route('post.refused')}}"
-                    class="d-none mx-2 d-sm-inline-block btn btn-sm btn-danger shadow-sm ">Bài
-                    đăng đã từ chối</a>
-                <a href="{{route('post.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Tạo bài
-                    đăng</a>
+                <a href="{{route('post.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Đăng
+                    bài</a>
             </div>
         </div>
         <div class="shadow">
@@ -33,7 +28,6 @@
                             <table class="table table-bordere text-center" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th style="min-width: 150px;">User</th>
                                         <th style="min-width: 100px;">Hình ảnh</th>
                                         <th style="min-width: 150px;">Tiêu đề</th>
                                         <th style="min-width: 120px;">Hãng xe</th>
@@ -52,7 +46,6 @@
                                 <tbody>
                                     <tr>
                                         @foreach ($posts as $post)
-                                                <td>{{$post->user->username ?? 'N/A' }}</td>
                                                 <td><img src="{{ asset('storage/' . $post->url_picture) }}" alt="Image" width="100%">
                                                 </td>
                                                 <td>{{$post->title}}</td>
@@ -67,20 +60,10 @@
                                                 <td>{{$post->price}}</td>
                                                 <td>{{$post->status}}</td>
                                                 <td>
-                                                    @if ($flag == true)
-                                                        <div class="d-flex justify-content-around">
-                                                            <a href="{{ route('post.accept', $post->id)}}"
-                                                                class="btn btn-sm btn-success shadow-sm"><i
-                                                                    class="fa-solid fa-circle-check"></i></a>
-                                                            <a href="{{ route('post.refuse', $post->id)}}"
-                                                                class="btn btn-sm btn-danger shadow-sm ms-2"><i
-                                                                    class="fa-solid fa-ban"></i></a>
-                                                        </div>
-                                                    @else
-                                                        <a href="{{ route('post.delete', $post->id)}}"
-                                                            class="btn btn-sm btn-danger shadow-sm"><i class="fa-solid fa-trash"></i></a>
-                                                    @endif
-
+                                                    <a href="{{ route('post.edit', $post->id)}}"
+                                                        class="btn btn-sm btn-primary shadow-sm"><i class="fa-solid fa-gear"></i></a>
+                                                    <a href="{{ route('post.delete', $post->id)}}"
+                                                        class="btn btn-sm btn-danger shadow-sm"><i class="fa-solid fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

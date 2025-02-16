@@ -30,8 +30,16 @@ Route::get('/save/{id}', [HomeController::class, 'save'])->name('save'); // xem 
 Route::get('/save/delete/{id}', [HomeController::class, 'deleteSave'])->name('save.delete'); // xem sau (lưu)
 
 
-Route::get('/cars', [CarController::class, 'showPostsCar'])->name('cars');
-Route::get('/cars/detail/{id}', [CarController::class, 'detailCar'])->name('cars.detail');
+Route::get('/user/mypost', [HomeController::class, 'myPost'])->name('mypost'); //tất cả các bài đăng của mình 
+Route::get('/user/mypost/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
+Route::post('/user/mypost/update', [PostController::class, 'update'])->name('post.update');
+
+
+Route::get('/cars', [CarController::class, 'showPostsCar'])->name('cars'); //trang bài đăng chính
+Route::get('/cars/detail/{id}', [CarController::class, 'detailCar'])->name('cars.detail'); //trang chi tiết bài đăng
+
+
+
 
 
 

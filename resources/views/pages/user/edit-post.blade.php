@@ -50,7 +50,7 @@
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Giá</label>
-                                        <input type="number" class="form-control" name="price" value="{{ $post->price}}">
+                                        <input type="number" class="form-control" name="price" value="{{ number_format($post->price, 0, ',', '.')}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\NguoiDung;
 use App\Models\User;
+use Auth;
 use Hash;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,9 @@ class UserController extends Controller
     
     public function index()
     {
-        $users = User::paginate(5);
+        $users = User::where('role', 'user')
+        ->orderBy('created_at', 'desc') // Sắp xếp theo thời gian tạo mới nhất trước
+        ->paginate(5);
         return view('pages.admin.user.index')->with('users', $users);
     }
 
@@ -38,30 +41,31 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'mat_khau' => 'required|string|min:6',
-        ]);
+        $email = $request->email;
+        $password = $request->password;
+        
+        $status = Auth::attempt(['email' => $email, 'password' => $password]);
 
-        $nguoiDung = NguoiDung::where('email', $request->email)->first();
-
-        if ($nguoiDung && Hash::check($request->mat_khau, $nguoiDung->mat_khau)) {
-            session([
-                'nguoi_dung_id' => $nguoiDung->id_nguoi_dung,
-                'ten_nguoi_dung' => $nguoiDung->ten_nguoi_dung,
-                'email' => $nguoiDung->email,
-            ]);
-
-            return redirect()->route('home');
+    
+        if ($status) { 
+            return redirect()->route('cars')->with('success', 'Đăng nhập thành công!');
         }
 
-
-        return back();
+        return redirect()->back()->with('error', 'Tài khoản không đúng. Vui lòng thử lại!');
     }
 
     public function logout(Request $request)
     {
         $request->session()->flush();
-        return redirect()->route('home');
+        return redirect()->route('cars')->with('success', 'Đã đăng xuất!');;
     }
+
+    public function makeStaff($id)
+{
+    $user = User::findOrFail($id);
+    $user->role = 'staff';
+    $user->save();
+
+    return redirect()->back()->with('success', 'Người dùng đã được cập nhật thành nhân viên.');
+}
 }

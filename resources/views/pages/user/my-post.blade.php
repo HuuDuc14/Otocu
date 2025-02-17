@@ -57,13 +57,13 @@
                                                 <td>{{$post->fuel_type}}</td>
                                                 <td>{{$post->gearbox}}</td>
                                                 <td>{{$post->number_seats}}</td>
-                                                <td>{{$post->price}}</td>
+                                                <td>{{number_format($post->price, 0, ',', '.')}}</td>
                                                 <td>{{$post->status}}</td>
                                                 <td>
                                                     <a href="{{ route('post.edit', $post->id)}}"
                                                         class="btn btn-sm btn-primary shadow-sm"><i class="fa-solid fa-gear"></i></a>
-                                                    <a href="{{ route('post.delete', $post->id)}}"
-                                                        class="btn btn-sm btn-danger shadow-sm"><i class="fa-solid fa-trash"></i></a>
+                                                    <button onclick="deletePost({{$post->id}})"
+                                                        class="btn btn-sm btn-danger shadow-sm"><i class="fa-solid fa-trash"></i></button>
                                                 </td>
                                             </tr>
                                         @endforeach

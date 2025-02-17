@@ -17,7 +17,7 @@
                                 {{$car->post->carBrand->name_car_brand ?? 'N/A' }} {{$car->post->title}}
                             </div>
                             <div class="card-text">
-                                {{$car->post->price}}
+                                {{number_format($car->post->price, 0, ',', '.')}} vnđ
                             </div>
                             <div class="card-text">
                                 <div class="row">

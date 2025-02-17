@@ -6,6 +6,7 @@ use App\Models\Address;
 use App\Models\BrandCar;
 use App\Models\DesignCar;
 use App\Models\Post;
+use Auth;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,6 +15,7 @@ class PostController extends Controller
     {
         $posts = Post::with(['carBrand', 'designCar', 'address', 'user'])
             ->where('status', 'chờ duyệt') // Lọc chỉ lấy bài post có status = 'chờ duyệt'
+            ->orderBy('created_at', 'desc')
             ->paginate(5);
         $flag = true; // để phân biệt trang index với accepted
         return view('pages.admin.post.index', compact('posts', 'flag'));
@@ -21,12 +23,17 @@ class PostController extends Controller
 
     public function create()
     {
-        $address = Address::all();
-        $brand_cars = BrandCar::all();
-        $design_cars = DesignCar::all();
+        if(Auth::check()){
+            $address = Address::all();
+            $brand_cars = BrandCar::all();
+            $design_cars = DesignCar::all();
+    
+    
+            return view('pages.admin.post.create', compact('address', 'brand_cars', 'design_cars'));
+        }
 
-
-        return view('pages.admin.post.create', compact('address', 'brand_cars', 'design_cars'));
+        return redirect()->route('login');
+       
     }
 
     public function store(Request $request)
@@ -62,7 +69,6 @@ class PostController extends Controller
                 $imagePath = $image->store('images', 'public');
             }
 
-            // dd($validated);
             $post = Post::create([
                 'title' => $validated['title'],
                 'id_car_brand' => $validated['car_brand'],
@@ -77,13 +83,13 @@ class PostController extends Controller
                 'mau_xe' => $validated['mau_xe'],
                 'number_seats' => $validated['number_seats'],
                 'status' => 'chờ duyệt',
-                'id_user' => 1,
+                'id_user' => Auth::id(),
             ]);
 
 
 
             // Redirect with a success message
-            return redirect()->route('post.index')->with('success', 'Đăng bài thành công!');
+            return redirect()->route('mypost')->with('success', 'Đăng bài thành công!');
         } catch (\Exception $e) {
             // Redirect with an error message if something goes wrong
             return redirect()->back()->with('error', 'Có lỗi xảy ra khi tạo đăng bài. Vui lòng thử lại!');
@@ -210,7 +216,6 @@ class PostController extends Controller
                 'mau_xe' => $validated['mau_xe'],
                 'number_seats' => $validated['number_seats'],
                 'status' => 'chờ duyệt',
-                'id_user' => 1, // Hash the password for security
             ]);
             // Redirect with a success message
             return redirect()->route('mypost')->with('success', 'Sửa bài đăng thành công!');

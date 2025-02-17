@@ -17,7 +17,7 @@
                 <div class="thongtin">
                     <p class="name">{{ $car->carBrand->name_car_brand ?? 'N/A' }} {{ $car->title}}</p>
                     <p class="text-secondary my-1">{{ $car->designCar->name_design_car ?? 'N/A'}}</p>
-                    <p class="price">{{ $car->price}}</p>
+                    <p class="price">{{ number_format($car->price, 0, ',', '.')}}</p>
                     <div class="item">
                         <p><i class="fa-solid fa-calendar"></i> Năm sản xuất</p>
                         <p>{{ $car->year}}</p>

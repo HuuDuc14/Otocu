@@ -3,7 +3,8 @@
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Users</h1>
-            {{-- <a href="{{route('nhanvien.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Create
+            {{-- <a href="{{route('nhanvien.create')}}"
+                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Create
                 staff</a> --}}
         </div>
         <div class="shadow">
@@ -22,10 +23,6 @@
                         </div>
                     </form>
 
-
-
-
-
                     <table class="table table-bordered mt-5" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -33,6 +30,7 @@
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Phone number</th>
+                                <th>Role</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -43,9 +41,15 @@
                                         <td>{{$user->username}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->phone_number}}</td>
+                                        <td>{{$user->role}}</td>
                                         <td>
+                                            <button class="btn btn-sm btn-primary shadow-sm"
+                                                onclick="confirmMakeStaff({{ $user->id }}, '{{ $user->username }}')">
+                                                Staff
+                                            </button>
+
                                             <a href="{{route('user.delete', $user->id)}}"
-                                                class="btn btn-sm btn-danger shadow-sm">Delele</a> 
+                                                class="btn btn-sm btn-danger shadow-sm">Xóa</a>
                                         </td>
 
 

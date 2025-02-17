@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\SavePost;
 use App\Models\User;
 use Auth;
+use Hash;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -47,7 +48,8 @@ class HomeController extends Controller
                 'username' => $validated['username'],
                 'email' => $validated['email'],
                 'phone_number' => $validated['phone_number'],
-                'password' => bcrypt($validated['password']), // Hash the password for security
+                'password' => Hash::make($validated['password']),
+                'role' => 'user' // Hash the password for security
             ]);
 
             // Redirect with a success message
@@ -71,7 +73,7 @@ class HomeController extends Controller
             // Create the user
             SavePost::create([
                 'id_post' => $id,
-                'id_user' => 1,
+                'id_user' => Auth::id(),
             ]);
 
             // Redirect with a success message
@@ -85,7 +87,8 @@ class HomeController extends Controller
     public function showPageSave()
     {
         $cars = SavePost::with(['post.address', 'post.user', 'post.carBrand', 'post.designCar'])
-            ->where('id_user', 1)
+            ->where('id_user', Auth::id())
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return view('pages.user.save-post', compact('cars'));
@@ -97,7 +100,7 @@ class HomeController extends Controller
         // $car->delete();
 
         $car = SavePost::where('id_post', $id)
-            ->where('id_user', 1) // Chỉ xóa bài viết của user có id = 1
+            ->where('id_user', Auth::id()) 
             ->firstOrFail(); // Lấy 1 bản ghi hoặc báo lỗi 404 nếu không tìm thấy
 
         $car->delete(); // Xóa bản ghi
@@ -107,7 +110,8 @@ class HomeController extends Controller
     public function myPost()
     {
         $posts = Post::with(['address', 'carBrand', 'designCar'])
-            ->where('id_user', 1)
+            ->where('id_user', Auth::id())
+            ->orderBy('created_at', 'desc')
             ->paginate(5);
 
         return view('pages.user.my-post', compact('posts'));

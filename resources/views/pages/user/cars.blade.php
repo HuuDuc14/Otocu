@@ -21,7 +21,7 @@
                                 {{$car->carBrand->name_car_brand ?? 'N/A' }} {{$car->title}}
                             </div>
                             <div class="card-text">
-                                {{$car->price}}
+                                {{number_format($car->price, 0, ',', '.')}} vnđ
                             </div>
                             <div class="card-text">
                                 <div class="row">

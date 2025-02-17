@@ -64,7 +64,7 @@
                                                 <td>{{$post->fuel_type}}</td>
                                                 <td>{{$post->gearbox}}</td>
                                                 <td>{{$post->number_seats}}</td>
-                                                <td>{{$post->price}}</td>
+                                                <td>{{number_format($post->price, 0, ',', '.')}}</td>
                                                 <td>{{$post->status}}</td>
                                                 <td>
                                                     @if ($flag == true)
@@ -77,8 +77,9 @@
                                                                     class="fa-solid fa-ban"></i></a>
                                                         </div>
                                                     @else
-                                                        <a href="{{ route('post.delete', $post->id)}}"
-                                                            class="btn btn-sm btn-danger shadow-sm"><i class="fa-solid fa-trash"></i></a>
+                                                        <button onclick="deletePost({{$post->id}})"
+                                                            class="btn btn-sm btn-danger shadow-sm"><i
+                                                                class="fa-solid fa-trash"></i></button>
                                                     @endif
 
                                                 </td>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,19 +9,24 @@ class NhanVienController extends Controller
 {
     public function index()
     {
-        $staffs = Staff::paginate(5);
+
+        $staffs = User::where('role', 'staff')
+        ->orderBy('created_at', 'desc') // Sắp xếp theo thời gian tạo mới nhất trước
+        ->paginate(5);
         return view('pages.admin.nhanvien.index')->with('staffs', $staffs);
     }
 
     public function search(Request $request)
     {
         if ($request->input('search')) {
-            $staffs = Staff::where(function ($query) use ($request) {
-                $query->where('username', 'LIKE', '%' . $request->input('search') . '%')
-                      ->orWhere('email', 'LIKE', '%' . $request->input('search') . '%');
-            })->paginate(5);
+            $staffs = User::where('role', 'staff') // Lọc chỉ lấy user có role staff
+                ->where(function ($query) use ($request) {
+                    $query->where('username', 'LIKE', '%' . $request->input('search') . '%')
+                          ->orWhere('email', 'LIKE', '%' . $request->input('search') . '%');
+                })
+                ->paginate(5);
         } else {
-            $staffs = Staff::paginate(5);
+            $staffs = User::where('role', 'staff')->paginate(5); // Lọc chỉ lấy user có role staff
         }
     
         return view('pages.admin.nhanvien.index')->with('staffs', $staffs);
@@ -53,9 +57,10 @@ class NhanVienController extends Controller
     
         try {
             // Create the user
-            $staff = Staff::create([
+            $staff = User::create([
                 'username' => $validated['username'],
                 'email' => $validated['email'],
+                'role' => 'staff',
                 'password' => bcrypt($validated['password']), // Hash the password for security
             ]);
 
@@ -70,7 +75,7 @@ class NhanVienController extends Controller
 
     public function edit($id) {
         // dd($id);
-        $staff = Staff::findOrFail($id);
+        $staff = User::where('role', 'staff')->findOrFail($id);
         // dd($staffs);
 
         return view('pages.admin.nhanvien.edit')->with('staff', $staff);
@@ -89,16 +94,15 @@ class NhanVienController extends Controller
         ]);
         // dd('vhaj');
         try {
-            $staff = Staff::findOrFail($request->input('id'));
+            $staff = User::where('role', 'staff')->findOrFail($request->input('id'));
    
             // Create the staff
             $staff->update([
                 'username' => $validated['username'],
                 'email' => $validated['email'],
-                'password' => bcrypt($validated['password']), // Hash the password for security
             ]);
             // Redirect with a success message
-            return redirect()->route('nhanvien.index')->with('success', 'Nhân viên được tạo thành công!');
+            return redirect()->route('nhanvien.index')->with('success', 'Nhân viên được cập nhật thành công!');
         } catch (\Exception $e) {
             // Redirect with an error message if something goes wrong
             return redirect()->back()->with('error', 'Có lỗi xảy ra khi tạo nhân viên. Vui lòng thử lại!');
@@ -106,9 +110,9 @@ class NhanVienController extends Controller
     }
 
     public function delete($id)  {
-        $staff = Staff::findOrFail($id);
+        $staff = User::where('role', 'staff')->findOrFail($id);
         $staff->delete();
-        return redirect()->route('nhanvien.index')->with('success', 'Xóa phòng trọ thành công!');
+        return redirect()->route('nhanvien.index')->with('success', 'Xóa nhân viên thành công!');
     }
 
 }

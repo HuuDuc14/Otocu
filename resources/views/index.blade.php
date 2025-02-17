@@ -24,7 +24,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -75,21 +77,50 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
+
+    {{-- model confirm --}}
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
+                    <h5 class="modal-title" id="confirmModalLabel">Xác nhận</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">
+                    <p id="confirmMessage"></p>
+                </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <form id="confirmForm" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">OK</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- model delete post--}}
+    <div class="modal fade" id="deletePost" tabindex="-1" aria-labelledby="deletePostLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deletePostLabel">Xác nhận</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="confirmMessageDelete"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <form id="confirmFormDelete" method="get">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Xóa</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -112,7 +143,33 @@
     <script src="{{ asset('js/demo/chart-area-demo.js')}}"></script>
     <script src="{{ asset('js/demo/chart-pie-demo.js')}}"></script>
 
-    
+
+
+
+    <script>
+        function confirmMakeStaff(userId, username) {
+            // Cập nhật nội dung modal
+            document.getElementById('confirmMessage').innerText = `Bạn có chắc chắn cho "${username}" làm nhân viên?`;
+
+            // Cập nhật action của form
+            document.getElementById('confirmForm').action = `/user/staff/${userId}`;
+
+            // Hiển thị modal
+            $('#confirmModal').modal('show');
+        }
+
+        function deletePost(postId) {
+            // Cập nhật nội dung modal
+            document.getElementById('confirmMessageDelete').innerText = `Bạn có chắc chắn xóa bài viết này không ?`;
+
+            // Cập nhật action của form
+            document.getElementById('confirmFormDelete').action = `/post/delete/${postId}`;
+
+            // Hiển thị modal
+            $('#deletePost').modal('show');
+        }
+
+    </script>
 
 </body>
 

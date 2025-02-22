@@ -9,7 +9,7 @@
                         <h6 class="m-0 font-weight-bold text-primary">Sửa bài đăng</h6>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('post.update')}}" method="post" enctype="multipart/form-data">
+                        <form class="load" action="{{route('post.update')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="text" hidden class="form-control" name="id" value="{{$post->id}}">
                             <div class="form-group">

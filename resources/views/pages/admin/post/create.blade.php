@@ -9,7 +9,7 @@
                         <h6 class="m-0 font-weight-bold text-primary">Bài đăng</h6>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('post.store')}}" method="post" enctype="multipart/form-data">
+                        <form class="load" action="{{route('post.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tiêu đề</label>

@@ -16,7 +16,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Login!</h1>
                                     </div>
-                                    <form class="user" action="{{ route('handlelogin')}}" method="post">
+                                    <form class="user load" action="{{ route('handlelogin')}}" method="post">
                                         @csrf
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
@@ -76,4 +76,5 @@
         {{-- Xóa thông báo sau khi hiển thị (Chỉ để hiển thị 1 lần) --}}
         {{ session()->forget('success') }}
     @endif
+
 @endsection

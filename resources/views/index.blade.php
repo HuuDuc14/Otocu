@@ -32,6 +32,18 @@
 
 <body id="page-top">
 
+    <div id="preloader">
+        {{-- <div class="loader"></div> --}}
+        <div class="loop cubes">
+            <div class="itemc cubes"></div>
+            <div class="itemc cubes"></div>
+            <div class="itemc cubes"></div>
+            <div class="itemc cubes"></div>
+            <div class="itemc cubes"></div>
+            <div class="itemc cubes"></div>
+        </div>
+    </div>
+
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -47,6 +59,7 @@
 
                 <!-- Topbar -->
                 @include('partials.navbar')
+                
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -126,6 +139,8 @@
         </div>
     </div>
 
+
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -145,6 +160,14 @@
 
 
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector(".load").addEventListener("submit", function() {
+                document.getElementById("preloader").style.display = "flex"; // Hiện preloader
+                document.querySelector("button[type='submit']").disabled = true; // Chặn bấm nhiều lần
+            });
+        });
+    </script>
 
     <script>
         function confirmMakeStaff(userId, username) {

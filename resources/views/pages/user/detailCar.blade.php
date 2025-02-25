@@ -50,7 +50,7 @@
                     </div>
                     <div class="item">
                         <p><i class="fa-solid fa-location-dot"></i> Địa điểm</p>
-                        <p>{{ $car->address->province ?? 'N/A'}}</p>
+                        <p>{{ $car->district->name ?? 'N/A'}}, {{ $car->province->name ?? 'N/A'}}</p>
                     </div>
                     <div class="goi">
                         <a class="btn" href="https://zalo.me/{{ $car->user->phone_number }}" target="_blank"><i class="fa-solid fa-phone"></i>Gọi điện</a>

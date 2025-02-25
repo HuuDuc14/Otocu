@@ -46,13 +46,26 @@
                                         <input type="number" class="form-control" name="price" value="{{old('price')}}">
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Địa chỉ</label>
-                                        <select name="address" id="address" class="form-control">
-                                            @foreach ($address as $addres)
-                                                <option value="{{ $addres->id }}">{{ $addres->province }}</option>
+                                        <label for="exampleInputEmail1">Địa điểm bán</label>
+                                        <select name="province_id" id="province" class="form-control">
+                                            <option selected>--Chọn tỉnh/ thành phố--</option>
+                                            @foreach ($provinces as $province)
+                                                <option value="{{ $province->id }}">{{ $province->name }}</option>
                                             @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="district">Quận/ Huyện</label>
+                                        <select name="district_id" id="district" class="form-control" disabled>
+                                            <option value="">Chọn quận/ huyện</option>
+                                            <!-- Quận sẽ được tải qua AJAX -->
                                         </select>
                                     </div>
                                 </div>

@@ -45,6 +45,7 @@ Route::get('/cars/detail/{id}', [CarController::class, 'detailCar'])->name('cars
 Route::get('/post/delete/{id}', [PostController::class, 'delete'])->name('post.delete'); // xóa bài
 
 Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
+Route::get('/get-districts/{provinceId}', [PostController::class, 'getDistricts']);
 Route::post('/post/store', [PostController::class, 'store'])->name('post.store');
 
 

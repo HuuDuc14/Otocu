@@ -61,7 +61,7 @@
                                     <div class="col-sm-5">
                                           <div class="d-flex align-items-center">
                                             <i class="fa-solid fa-location-dot"></i>
-                                            <p class="my-0 mx-2">{{$car->address->province ?? 'N/A'}}</p>
+                                            <p class="my-0 mx-2">{{$car->district->name ?? 'N/A'}}, {{$car->province->name ?? 'N/A'}}</p>
                                         </div>
                                     </div>
                                 </div>

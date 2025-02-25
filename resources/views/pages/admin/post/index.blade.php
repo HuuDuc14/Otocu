@@ -58,7 +58,7 @@
                                                 <td>{{$post->title}}</td>
                                                 <td>{{$post->carBrand->name_car_brand ?? 'N/A' }}</td>
                                                 <td>{{$post->designCar->name_design_car ?? 'N/A'}}</td>
-                                                <td>{{$post->address->province ?? 'N/A'}}</td>
+                                                <td>{{$post->district->name ?? 'N/A'}}, {{$post->province->name ?? 'N/A'}}</td>
                                                 <td>{{$post->year}}</td>
                                                 <td>{{$post->mileage}} km</td>
                                                 <td>{{$post->fuel_type}}</td>

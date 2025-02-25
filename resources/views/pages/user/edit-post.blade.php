@@ -15,6 +15,9 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tiêu đề</label>
                                 <input type="text" class="form-control" name="title" value="{{ $post->title}}">
+                                @error('title')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="row">
@@ -29,6 +32,9 @@
                                                 </option>
                                             @endforeach
                                         </select>
+                                        @error('car_brand')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                     
                                 </div>
@@ -42,6 +48,9 @@
                                                     {{ $design_car->name_design_car}}</option>
                                             @endforeach
                                         </select>
+                                        @error('design_car')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -50,19 +59,40 @@
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Giá</label>
-                                        <input type="number" class="form-control" name="price" value="{{ number_format($post->price, 0, ',', '.')}}">
+                                        <input type="number" class="form-control" name="price" value="{{$post->price}}">
+                                        @error('price')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
-                                </div>
-                                <div class="col-sm-4">
+                                    
+                                </div>                             
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Địa chỉ</label>
-                                        <select name="address" id="address" class="form-control">
-                                            @foreach ($address as $addres)
-                                                <option value="{{ $addres->id }}"                                                                             
-                                                {{ $addres->id == $post->id_address ? 'selected' : ''}}>
-                                                {{ $addres->province }}</option>
+                                        <label for="exampleInputEmail1">Địa điểm bán</label>
+                                        <select name="province_id" id="province" class="form-control">
+                                            <option value="{{$post->province->id}}" selected>{{$post->province->name}}</option>
+                                            @foreach ($provinces as $province)
+                                                <option value="{{ $province->id }}">{{ $province->name }}</option>
                                             @endforeach
                                         </select>
+                                        @error('province_id')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="district">Quận/ Huyện</label>
+                                        <select name="district_id" id="district" class="form-control">
+                                            <option value="{{$post->district->id}}" selected>{{$post->district->name}}</option>
+                                            <!-- Quận sẽ được tải qua AJAX -->
+                                        </select>
+                                        @error('district_id')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -76,6 +106,9 @@
                         
                                 <!-- Input để chọn hình ảnh mới -->
                                 <input type="file" class="form-control" name="url_picture" value="{{ old('url_picture', $post->url_picture) }}">
+                                @error('url_picture')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
 
 
@@ -90,12 +123,18 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Quãng đường đã đi</label>
                                         <input type="number" class="form-control" name="mileage" value="{{$post->mileage}}">
+                                        @error('mileage')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Màu xe</label>
                                         <input type="text" class="form-control" name="mau_xe" value="{{ $post->mau_xe}}">
+                                        @error('mau_xe')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -109,6 +148,9 @@
                                             <option value="điện" {{ $post->fuel_type == 'điện' ? 'selected' : '' }}>Điện</option>
                                             <option value="dầu" {{ $post->fuel_type == 'dầu' ? 'selected' : '' }}>Dầu</option>
                                         </select>
+                                        @error('fuel_type')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -118,6 +160,9 @@
                                             <option value="số sàn" {{ $post->gearbox == 'số sàn' ? 'selected' : '' }}>Số sàn</option>
                                             <option value="số tự động" {{ $post->gearbox == 'số tự động' ? 'selected' : '' }}>Số tự động</option>
                                         </select>
+                                        @error('gearbox')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -125,7 +170,11 @@
                                         <label for="exampleInputEmail1">Số chỗ ngồi</label>
                                         <input type="number" class="form-control" name="number_seats"
                                             value="{{$post->number_seats}}">
+                                            @error('number_seats')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
+                                    
                                 </div>
                             </div>
                             

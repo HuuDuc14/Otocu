@@ -192,6 +192,39 @@
             $('#deletePost').modal('show');
         }
 
+        $(document).ready(function () {
+            // Khi người dùng chọn tỉnh
+            $('#province').on('change', function () {
+                var provinceId = $(this).val();
+
+                // Nếu tỉnh được chọn, tải danh sách quận từ server
+                if (provinceId) {
+                    $.ajax({
+                        url: '/get-districts/' + provinceId, // Đảm bảo đường dẫn đúng
+                        type: 'GET',
+                        success: function (data) {
+                            // Kích hoạt dropdown quận
+                            $('#district').prop('disabled', false);
+
+                            // Clear các quận cũ
+                            $('#district').html('<option value="">Chọn quận</option>');
+
+                            // Thêm các quận mới vào dropdown
+                            $.each(data, function (key, value) {
+                                $('#district').append('<option value="' + key + '">' + value + '</option>');
+                            });
+                        },
+                        error: function () {
+                            alert("Không thể tải quận, vui lòng thử lại!");
+                        }
+                    });
+                } else {
+                    // Nếu tỉnh không được chọn, vô hiệu hóa dropdown quận và clear các giá trị
+                    $('#district').prop('disabled', true);
+                    $('#district').html('<option value="">Chọn quận</option>');
+                }
+            });
+        });
     </script>
 
 </body>

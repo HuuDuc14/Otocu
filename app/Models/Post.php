@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kjmtrue\VietnamZone\Models\District;
+use Kjmtrue\VietnamZone\Models\Province;
 
 class Post extends Model
 {
@@ -12,9 +14,9 @@ class Post extends Model
     protected $table = 'post';
 
     protected $fillable = [
-        'title', 'car_brand', 'design_car', 'address', 'fuel_type', 'gearbox', 'url_picture',
+        'title', 'car_brand', 'design_car', 'fuel_type', 'gearbox', 'url_picture',
         'price', 'year', 'mileage', 'mau_xe', 'number_seats', 'status', 'id_design_car', 
-        'id_user', 'id_car_brand', 'id_address'
+        'id_user', 'id_car_brand', 'province_id', 'district_id'
     ];
 
     public function carBrand()
@@ -28,13 +30,18 @@ class Post extends Model
         return $this->belongsTo(DesignCar::class, 'id_design_car');
     }
 
-    public function address()
-    {
-        return $this->belongsTo(Address::class, 'id_address');
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'province_id');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class, 'district_id');
     }
 }

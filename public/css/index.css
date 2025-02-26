@@ -307,3 +307,43 @@
   .itemc:nth-child(6):after {
     color: #ffda77;
   }
+
+  .range-2-slider{
+    background-color: #1D3461;
+    position: relative;
+  }
+
+  .range1{
+    position: absolute;
+    left: 0;
+    width: 51%;
+  }
+
+  .range2{
+    position: absolute;
+    right: 0;
+    width: 50%;
+  }
+
+  /*  */
+  input.range1, input.range2 {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 51%;
+    height: 5px;
+    border: 1px solid rgb(232, 232, 232);
+    border-radius: 5px;
+  }
+  
+  /* Màu của nút trượt */
+  input.range1::-webkit-slider-thumb, input.range2::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: rgb(1, 102, 216); /* Màu của nút trượt */
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+  }
+  

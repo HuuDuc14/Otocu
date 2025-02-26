@@ -27,6 +27,8 @@ Route::get('/register', [HomeController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [HomeController::class, 'registerStore'])->name('register.store');
 Route::post('/login', [UserController::class, 'login'])->name('handlelogin');
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+// xác thực email để tạo tk
+Route::get('/register/verify', [HomeController::class, 'verifyEmail'])->name('register.verify');
 
 Route::get('/save', [HomeController::class, 'showPageSave'])->name('save.index'); //trang xem sau
 Route::get('/save/{id}', [HomeController::class, 'save'])->name('save'); // xem sau (lưu)

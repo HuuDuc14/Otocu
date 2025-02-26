@@ -59,7 +59,7 @@
 
                 <!-- Topbar -->
                 @include('partials.navbar')
-                
+
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -161,8 +161,8 @@
 
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelector(".load").addEventListener("submit", function() {
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector(".load").addEventListener("submit", function () {
                 document.getElementById("preloader").style.display = "flex"; // Hiện preloader
                 document.querySelector("button[type='submit']").disabled = true; // Chặn bấm nhiều lần
             });
@@ -226,6 +226,48 @@
             });
         });
     </script>
+
+    <script>
+        //giá
+        const priceRange = document.getElementById('priceRange');
+        const priceValue = document.getElementById('priceValue');
+        priceRange.addEventListener('input', function () {
+            priceValue.textContent = priceRange.value.replace(/\B(?=(\d{3})+(?!\d))/g, ','); // Định dạng giá trị với dấu phẩy
+        });
+        priceValue.textContent = priceRange.value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+
+
+        //km đã đi
+        const mileageRange = document.getElementById('mileageRange');
+        const mileageValue = document.getElementById('mileageValue');
+        mileageRange.addEventListener('input', function () {
+            mileageValue.textContent = mileageRange.value.replace(/\B(?=(\d{3})+(?!\d))/g, ','); // Định dạng giá trị với dấu phẩy
+        });
+        mileageValue.textContent = mileageRange.value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let minPriceInput = document.getElementById("min_price_range");
+            let maxPriceInput = document.getElementById("max_price_range");
+            let minPriceValue = document.getElementById("min_price_value");
+            let maxPriceValue = document.getElementById("max_price_value");
+        
+            function updatePriceDisplay() {
+                minPriceValue.textContent = new Intl.NumberFormat('vi-VN').format(minPriceInput.value);
+                maxPriceValue.textContent = new Intl.NumberFormat('vi-VN').format(maxPriceInput.value);
+            }
+        
+            // Cập nhật khi giá trị thay đổi
+            minPriceInput.addEventListener("input", updatePriceDisplay);
+            maxPriceInput.addEventListener("input", updatePriceDisplay);
+        
+            // Gọi ngay khi trang load để giữ giá trị đúng
+            updatePriceDisplay();
+        });
+        </script>
+        
 
 </body>
 

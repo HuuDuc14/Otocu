@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\NguoiDung;
+use App\Models\Post;
 use App\Models\User;
 use Auth;
 use Hash;
@@ -35,6 +36,7 @@ class UserController extends Controller
 
     public function delete($id)  {
         $user = User::findOrFail($id);
+        Post::where('id_user', $id)->delete();
         $user->delete();
         return redirect()->route('user.index')->with('success', 'Xóa người dùng thành công!');
     }

@@ -58,8 +58,9 @@
                             <div class="row">
                                 <div class="col-sm-8">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Giá</label>
-                                        <input type="number" class="form-control" name="price" value="{{$post->price}}">
+                                        <label for="exampleInputEmail1">Giá: đ <span class="text-success" id="priceValue">{{ old('price', 300000000) }}</span></label>
+                                        <input type="range" class="form-control" min="300000000" max="3000000000"
+                                            step="100000000" name="price" value="{{$post->price}}" id="priceRange">
                                         @error('price')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -116,25 +117,31 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Năm sản xuất</label>
-                                        <input type="number" class="form-control" name="year" value="{{ $post->year }}">
+                                        <select name="year" class="form-control">
+                                            <option value="{{ $post->year }}">{{ $post->year }}</option>
+                                            @for ($i = 1990; $i <= $yearnow; $i++ )
+                                            <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Quãng đường đã đi</label>
-                                        <input type="number" class="form-control" name="mileage" value="{{$post->mileage}}">
-                                        @error('mileage')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
+                                        <label>Đã đi: <span class="text-danger" id="mileageValue">{{ old('mileage') }}</span> km</label>
+                                                <input type="range" class="form-control" min="2000" max="20000"
+                                            step="1000" name="mileage" value="{{$post->mileage}}" id="mileageRange">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Màu xe</label>
-                                        <input type="text" class="form-control" name="mau_xe" value="{{ $post->mau_xe}}">
-                                        @error('mau_xe')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
+                                        <select name="mau_xe" class="form-control">
+                                            <option value="Trắng" {{ $post->mau_xe == 'Trắng' ? 'selected' : '' }}>Trắng</option>
+                                            <option value="Đen" {{ $post->mau_xe == 'Đen' ? 'selected' : '' }}>Đen</option>
+                                            <option value="Đỏ" {{ $post->mau_xe == 'Đỏ' ? 'selected' : '' }}>Đỏ</option>
+                                            <option value="Vàng" {{ $post->mau_xe == 'Vàng' ? 'selected' : '' }}>Vàng</option>
+                                            <option value="Xanh Dương" {{ $post->mau_xe == 'Xanh Dương' ? 'selected' : '' }}>Xanh Dương</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -168,8 +175,12 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Số chỗ ngồi</label>
-                                        <input type="number" class="form-control" name="number_seats"
-                                            value="{{$post->number_seats}}">
+                                            <select name="number_seats" class="form-control">
+                                                <option value="2" {{ $post->number_seats == 2 ? 'selected' : '' }}>2</option>
+                                                <option value="5" {{ $post->number_seats == 5 ? 'selected' : '' }}>5</option>
+                                                <option value="7" {{ $post->number_seats == 7 ? 'selected' : '' }}>7</option>
+                                                <option value="9" {{ $post->number_seats == 9 ? 'selected' : '' }}>9</option>
+                                            </select>
                                             @error('number_seats')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror

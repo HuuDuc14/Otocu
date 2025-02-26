@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Address;
 use App\Models\BrandCar;
 use App\Models\DesignCar;
 use App\Models\Post;
 use App\Models\SavePost;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Kjmtrue\VietnamZone\Models\District;
 use Kjmtrue\VietnamZone\Models\Province;
@@ -36,9 +36,9 @@ class PostController extends Controller
             $provinces = Province::all();
             $brand_cars = BrandCar::all();
             $design_cars = DesignCar::all();
+            $yearnow = now()->year;
     
-    
-            return view('pages.admin.post.create', compact('provinces', 'brand_cars', 'design_cars'));
+            return view('pages.admin.post.create', compact('yearnow','provinces', 'brand_cars', 'design_cars'));
         }
 
         return redirect()->route('login');
@@ -93,7 +93,7 @@ class PostController extends Controller
                 'year' => $validated['year'],
                 'mileage' => $validated['mileage'],
                 'mau_xe' => $validated['mau_xe'],
-                'number_seats' => $validated['number_seats'],
+                'number_seats' => (int) $validated['number_seats'],
                 'status' => 'chờ duyệt',
                 'id_user' => Auth::id(),
             ]);
@@ -180,8 +180,9 @@ class PostController extends Controller
         $design_cars = DesignCar::all();
         $provinces = Province::all();
         $districts = District::all();
+        $yearnow = now()->year;
 
-        return view('pages.user.edit-post', compact('post', 'brand_cars', 'design_cars', 'provinces', 'districts'));
+        return view('pages.user.edit-post', compact('yearnow','post', 'brand_cars', 'design_cars', 'provinces', 'districts'));
     }
 
     public function update(Request $request){

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmenrController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NhanVienController;
@@ -49,6 +50,11 @@ Route::get('/post/delete/{id}', [PostController::class, 'delete'])->name('post.d
 Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
 Route::get('/get-districts/{provinceId}', [PostController::class, 'getDistricts']);
 Route::post('/post/store', [PostController::class, 'store'])->name('post.store');
+
+// hẹn xem xe
+Route::post('/appointment/store', [AppointmenrController::class, 'store'])->name('appointment.store');
+Route::get('/appointment/watched/{id}', [AppointmenrController::class, 'watched'])->name('appointment.watched');
+Route::get('/appointment', [AppointmenrController::class, 'appointment'])->name('appointment');
 
 
 Route::middleware(['auth'])->group(function () {

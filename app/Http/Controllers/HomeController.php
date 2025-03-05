@@ -17,6 +17,8 @@ class HomeController extends Controller
 {
     public function showPageHome()
     {
+
+
         return view('pages.user.dashboard');
     }
     public function showRegisterForm()

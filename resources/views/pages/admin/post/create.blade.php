@@ -151,7 +151,6 @@
                                         <button type="submit" class="btn btn-success">Đăng bài</button>
                                     </div>
                                 </div>
-
                         </form>
                     </div>
                 </div>

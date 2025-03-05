@@ -98,7 +98,7 @@
                                     <a class="card-action" href="{{route('save', $car->id)}}"><i
                                             class="fa-solid fa-bookmark"></i></a>
                                     <div class="card-heading">
-                                        {{$car->carBrand->name_car_brand ?? 'N/A' }} {{$car->title}}
+                                        {{$car->carBrand->name_car_brand ?? 'N/A' }} | {{$car->title}}
                                     </div>
                                     <div class="card-text text-danger">
                                         đ {{number_format($car->price, 0, ',', '.')}}

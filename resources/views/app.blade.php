@@ -122,7 +122,7 @@
     <script src="{{ asset('assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
     <script src="{{ asset('assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js') }}"></script>
     <script src="{{ asset('assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js') }}"></script>
-    <script src="{{ asset('dist/js/pages/dashboards/dashboard1.js') }}"></script>
+    {{-- <script src="{{ asset('dist/js/pages/dashboards/dashboard1.js') }}"></script> --}}
     <script src="{{ asset('assets/libs/popper.js/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('assets/extra-libs/sparkline/sparkline.js') }}"></script>
     <script src="{{ asset('assets/extra-libs/prism/prism.js') }}"></script>
@@ -131,6 +131,7 @@
     <script src="{{ asset('dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
 
     <script src="{{ asset('dist/js/pages/dashboards/dashboard1.min.js')}}"></script>
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {

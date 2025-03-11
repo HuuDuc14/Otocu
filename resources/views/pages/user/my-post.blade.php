@@ -52,7 +52,10 @@
                                                     <td><img src="{{ asset('storage/' . $post->url_picture) }}" alt="Image"
                                                             width="100%">
                                                     </td>
-                                                    <td>{{$post->carBrand->name_car_brand ?? 'N/A' }} | {{$post->title}}</td>
+                                                    <td>
+                                                        <h5 class="text-dark mb-0 font-16 font-weight-medium">{{$post->carBrand->name_car_brand ?? 'N/A' }} | {{$post->title}}</h5>
+                                                        <span class="text-muted font-10">{{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}</span>
+                                                    </td>
                                                     <td>{{$post->designCar->name_design_car ?? 'N/A'}}</td>
                                                     <td>{{$post->district->name ?? 'N/A'}}, {{$post->province->name ?? 'N/A'}}</td>
                                                     <td class="font-weight-medium text-dark border-top-0 px-2 py-4">

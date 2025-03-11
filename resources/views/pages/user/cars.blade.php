@@ -106,6 +106,14 @@
                                 <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                                     <div class="shadow">
                                         <div class="card-sl">
+                                            <div class="card-text d-flex px-0 pt-0">
+                                                <img src="{{asset('assets/images/undraw_profile.svg')}}" width="35px" alt="">
+                                                <div class="ms-2 ">
+                                                    <p class=" font-16 my-0">{{ $car->user->username}}</p>
+                                                    <p class="my-0 font-12 text-muted">{{\Carbon\Carbon::parse($car->created_at)->diffForHumans()}}</p>
+                                                </div>                                       
+                                            </div>
+                                            <hr class="my-0">
                                             <div class="card-image">
                                                 <a href="{{ route('cars.detail', $car->id)}}"><img
                                                         src="{{ asset('storage/' . $car->url_picture) }}" alt="Image"
@@ -118,8 +126,8 @@
                                                 {{$car->carBrand->name_car_brand ?? 'N/A' }} | {{$car->title}}
                                             </div>
                                             <div class="card-text text-danger">
-                                                đ {{number_format($car->price, 0, ',', '.')}}
-                                            </div>
+                                               {{number_format($car->price, 0, ',', '.')}} đ 
+                                            </div> 
                                             <div class="card-text">
                                                 <div class="row">
                                                     <div class="col-sm-4">

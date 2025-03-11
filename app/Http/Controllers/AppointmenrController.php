@@ -39,7 +39,7 @@ class AppointmenrController extends Controller
     public function appointment() {
         $appointments = Appointment::with(['customer', 'seller', 'post'])
         ->where('id_seller', Auth::id())
-        ->orderBy('date', 'desc')
+        ->orderBy('created_at', 'desc')
         ->get();
 
         return view('pages.user.appointment', compact('appointments'));

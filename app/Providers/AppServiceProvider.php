@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Appointment;
 use App\Models\User;
 use Auth;
+use Carbon\Carbon;
 use Hash;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
@@ -24,8 +25,10 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(): void
-    {
+    {   
+        
         Paginator::useBootstrap();
+        Carbon::setLocale('vi');
 
         View::composer('partials-new.header', function ($view) {
             $appointments = Appointment::where('id_seller', Auth::id())

@@ -38,15 +38,17 @@
                                             @foreach ($appointments as $appointment)
                                                 <tr>
                                                     <td>{{$appointment->customer->username}}
+                                                        <span class="text-muted font-12"> <i class=" fas fa-caret-right"></i> {{\Carbon\Carbon::parse($appointment->created_at)->diffForHumans()}}</span>
                                                         <a href="https://zalo.me/{{ $appointment->customer->phone_number }}"
                                                             target="_blank" class="btn-phone" data-bs-toggle="tooltip"
                                                             data-placement="top" title="Liên hệ">
                                                             <span><i class="fas fa-phone"></i></span>
                                                         </a>
+                                                        
                                                     </td>
                                                     <td>{{$appointment->post->carBrand->name_car_brand ?? 'N/A' }} |
                                                         {{$appointment->post->title ?? 'N/A' }}</td>
-                                                    <td>{{$appointment->date ?? 'N/A'}}</td>
+                                                    <td>{{\Carbon\Carbon::parse($appointment->date)->format('d/m/Y')}}</td>
                                                     <td>
                                                         @if ($appointment->status)
                                                             <i class="fa fa-circle text-success font-12" data-bs-toggle="tooltip"
@@ -90,9 +92,6 @@
         {{ session()->forget('success') }}
     @endif
 
-    <script>
-
-    </script>
 
 
 

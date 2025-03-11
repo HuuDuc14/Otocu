@@ -51,7 +51,10 @@
                                         <tbody>
                                             @foreach ($posts as $post)
                                                 <tr>
-                                                    <td class="border-top-0 px-2 py-4 text-dark">{{$post->user->username ?? 'N/A' }}
+                                                    <td class="border-top-0 px-2 py-4 text-dark">
+                                                        <span class="d-none">{{$post->created_at}}</span>
+                                                        <h5 class="text-dark mb-0 font-16 font-weight-medium">{{$post->user->username}}</h5>
+                                                        <span class="text-muted font-10">{{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}</span>
                                                     </td>
                                                     <td><img src="{{ asset('storage/' . $post->url_picture) }}" alt="Image"
                                                             width="100%">

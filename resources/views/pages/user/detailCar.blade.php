@@ -12,37 +12,37 @@
                         <p class="text-secondary my-1">{{ $car->designCar->name_design_car ?? 'N/A'}}</p>
                         <p class="price">{{ number_format($car->price, 0, ',', '.')}}</p>
                         <div class="item">
-                            <p><i class="fa-solid fa-calendar"></i> Năm sản xuất</p>
+                            <p><i class="far fa-calendar"></i> Năm sản xuất</p>
                             <p>{{ $car->year}}</p>
                         </div>
                         <div class="item">
-                            <p><i class="fa-solid fa-road"></i> Đã lăn bánh</p>
+                            <p><i class="fas fa-road"></i> Đã lăn bánh</p>
                             <p>{{ $car->mileage}} km</p>
                         </div>
                         <div class="item">
-                            <p><i class="fa-solid fa-gas-pump"></i> Nhiên liệu</p>
+                            <p><i class="fas fa-fire-extinguisher"></i> Nhiên liệu</p>
                             <p>{{ $car->fuel_type}}</p>
                         </div>
                         <div class="item">
-                            <p><i class="fa-solid fa-palette"></i> Màu</p>
+                            <p><i class="fas fa-paint-brush"></i> Màu</p>
                             <p>{{ $car->mau_xe}}</p>
                         </div>
                         <div class="item">
-                            <p><i class="fa-solid fa-gears"></i> Hộp số</p>
+                            <p><i class=" fas fa-tachometer-alt"></i> Hộp số</p>
                             <p>{{ $car->gearbox}}</p>
                         </div>
                         <div class="item">
-                            <p><i class="fa-solid fa-couch"></i> Chỗ ngồi</p>
+                            <p><i class="fas fa-couch"></i> Chỗ ngồi</p>
                             <p>{{ $car->number_seats}}</p>
                         </div>
 
                         <hr />
                         <div class="item">
-                            <p><i class="fa-solid fa-user"></i> Người bán</p>
+                            <p><i class=" fas fa-user"></i> Người bán</p>
                             <p>{{ $car->user->username ?? 'N/A'}}</p>
                         </div>
                         <div class="item">
-                            <p><i class="fa-solid fa-location-dot"></i> Địa điểm</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Địa điểm</p>
                             <p>{{ $car->district->name ?? 'N/A'}}, {{ $car->province->name ?? 'N/A'}}</p>
                         </div>
                         <div class="goi">

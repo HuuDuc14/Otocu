@@ -50,7 +50,7 @@
                                             <div class="w-75 d-inline-block v-middle ps-2">
                                                 <h6 class="message-title mb-0 mt-1">Hẹn xem xe</h6>
                                                 <span class="font-12 text-nowrap d-block text-muted text-truncate">Bạn có 1 lịch hẹn xem xe mới</span>
-                                                <span class="font-12 text-nowrap d-block text-muted">{{$appointment->created_at}}</span>
+                                                <span class="font-12 text-nowrap d-block text-muted">{{\Carbon\Carbon::parse($appointment->created_at)->diffForHumans()}}</span>
                                             </div>
                                         </a>
                                     @endforeach                       

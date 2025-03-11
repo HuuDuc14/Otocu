@@ -54,7 +54,7 @@
                                             <span class="status" for="exampleInputEmail1">Giá<label
                                                     class="text-danger">*</label>: <label class="text-success"
                                                     id="priceValue">{{ old('price', 300000000) }}</label> đ</span>
-                                            <input type="range" class="slider-range" min="300000000" max="3000000000"
+                                            <input type="range" class="form-range" min="300000000" max="3000000000"
                                                 step="100000000" name="price" value="{{ old('price') }}" id="priceRange">
                                         </div>
                                     </div>
@@ -145,7 +145,7 @@
                                         <div class="form-group formField">
                                             <span class="status">Đã đi: <label class="text-danger"
                                                     id="mileageValue">{{ old('mileage') }}</label> km</span>
-                                            <input type="range" class="slider-range" min="2000" max="100000" step="1000"
+                                            <input type="range" class="form-range" min="2000" max="100000" step="1000"
                                                 name="mileage" value="{{ old('mileage') }}" id="mileageRange">
                                         </div>
                                     </div>

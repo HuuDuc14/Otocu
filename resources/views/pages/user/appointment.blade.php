@@ -1,72 +1,75 @@
-@extends('index')
+@extends('app')
 @section('content')
-    <div class="container-fluid">
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Lịch hẹn</h1>
-            {{-- <div class="d-flex justify-content-end">
-                <a href="{{route('post.accepted')}}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm ">Bài
-                    đăng đã được duyệt</a>
-                <a href="{{route('post.refused')}}"
-                    class="d-none mx-2 d-sm-inline-block btn btn-sm btn-danger shadow-sm ">Bài
-                    đăng đã từ chối</a>
-                <a href="{{route('post.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Tạo bài
-                    đăng</a>
-            </div> --}}
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-7 align-self-center">
+                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">
+                        Lịch hẹn xem xe
+                    </h4>
+                    <div class="d-flex align-items-center">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb m-0 p-0">
+                                <li class="breadcrumb-item">Tất cả lịch hẹn</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="shadow">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <form class="form-inline mw-100 navbar-search" action="{{route('post.search')}}">
-                        @csrf
-                        <div class="input-group">
-                            <input type="search" class="form-control bg-light border-0 small" placeholder="Search post..."
-                                aria-label="Search" aria-describedby="basic-addon2" name="search" id="form1">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    @if ($appointments->isNotEmpty())
-                        <div class="table-responsive mt-5">
-                            <table class="table table-bordere text-center" id="dataTable" width="100%" cellspacing="0">
-                                <thead >
-                                    <tr>
-                                        <th>Người hẹn</th>
-                                        <th>Xe</th>
-                                        <th>Ngày</th>
-                                        <th>Trạng thái</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        @foreach ($appointments as $appointment)
-                                                <td>{{$appointment->customer->username}}                                                  
-                                                </td>
-                                                <td>{{$appointment->post->carBrand->name_car_brand ?? 'N/A' }} {{$appointment->post->title ?? 'N/A' }}</td>
-                                                <td>{{$appointment->date ?? 'N/A'}}</td>                
-                                                <td>{{$appointment->status ? 'Đã xem' : 'Chưa xem'}}</td>
-                                                <td>
-                                                    <div class="d-flex justify-content-around">
-                                                        <a href="https://zalo.me/{{ $appointment->customer->phone_number }}" target="_blank"
-                                                            class="btn btn-sm btn-success shadow-sm"><i class="fa-solid fa-phone-flip"></i></a>
-                                                        <a href="{{route('appointment.watched', $appointment->id )}}"
-                                                            class="btn btn-sm btn-primary shadow-sm"><i class="fa-solid fa-check"></i></a>
-                                                    </div>
-                                                </td>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            @if ($appointments->isNotEmpty())
+                                <div class="table-responsive">
+                                    <table id="zero_config" class="table no-wrap v-middle mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th class="font-14 font-weight-medium text-dark">Khách</th>
+                                                <th class="font-14 font-weight-medium text-dark">Xe</th>
+                                                <th class="font-14 font-weight-medium text-dark">Ngày xem</th>
+                                                <th class="font-14 font-weight-medium text-dark">Trạng thái</th>
+                                                <th class="font-14 font-weight-medium text-dark">Hành động</th>
                                             </tr>
-                                        @endforeach
-                                </tbody>
-                            </table>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($appointments as $appointment)
+                                                <tr>
+                                                    <td>{{$appointment->customer->username}}
+                                                        <a href="https://zalo.me/{{ $appointment->customer->phone_number }}"
+                                                            target="_blank" class="btn-phone" data-bs-toggle="tooltip"
+                                                            data-placement="top" title="Liên hệ">
+                                                            <span><i class="fas fa-phone"></i></span>
+                                                        </a>
+                                                    </td>
+                                                    <td>{{$appointment->post->carBrand->name_car_brand ?? 'N/A' }} |
+                                                        {{$appointment->post->title ?? 'N/A' }}</td>
+                                                    <td>{{$appointment->date ?? 'N/A'}}</td>
+                                                    <td>
+                                                        @if ($appointment->status)
+                                                            <i class="fa fa-circle text-success font-12" data-bs-toggle="tooltip"
+                                                                data-placement="top" title="Đã xem"> Hoàn thành</i>                                                      
+                                                        @else
+                                                            <i class="fa fa-circle text-danger font-12" data-bs-toggle="tooltip"
+                                                                data-placement="top" title="Chưa xem"> Chưa xem</i>
+                                                        @endif                                         
+                                                    </td>
+                                                    <td>                                                      
+                                                        <a href="{{route('appointment.watched', $appointment->id)}}"
+                                                            class="btn btn-sm btn-success shadow-sm">Hoàn thành</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <h4 class="text-center mt-4">Không có bài đăng</h4>
+                            @endif
                         </div>
-                    @else
-                        <h4 class="text-center mt-4">Không có lịch hẹn</h4>
-                    @endif
-
-
-
+                    </div>
                 </div>
             </div>
         </div>

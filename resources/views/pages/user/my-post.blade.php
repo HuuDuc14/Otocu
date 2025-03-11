@@ -1,82 +1,93 @@
-@extends('index')
+@extends('app')
 @section('content')
-    <div class="container-fluid">
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Bài đăng của tôi</h1>
-            <div class="d-flex justify-content-end">
-                <a href="{{route('post.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Đăng
-                    bài</a>
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-7 align-self-center">
+                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">
+                        Bài viết của tôi
+                    </h4>
+                    <div class="d-flex align-items-center">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb m-0 p-0">
+                                <li class="breadcrumb-item">Quản lý bài viết</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-5 align-self-center">
+                    <div class="customize-input float-end">
+                        <a href="{{route('post.create')}}" class="create-button">
+                            <i class="arr-2  fas fa-arrow-right"> </i>
+                            <span class="text">Đăng bài</span>
+                            <span class="circle"></span>
+                            <i class="arr-1  fas fa-arrow-right"> </i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="shadow">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <form class="form-inline mw-100 navbar-search" action="{{route('post.search')}}">
-                        @csrf
-                        <div class="input-group">
-                            <input type="search" class="form-control bg-light border-0 small" placeholder="Search post..."
-                                aria-label="Search" aria-describedby="basic-addon2" name="search" id="form1">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    @if ($posts->isNotEmpty())
-                        <div class="table-responsive mt-5">
-                            <table class="table table-bordere text-center" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th style="min-width: 100px;">Hình ảnh</th>
-                                        <th style="min-width: 150px;">Tiêu đề</th>
-                                        <th style="min-width: 120px;">Hãng xe</th>
-                                        <th style="min-width: 120px;">Kiểu dáng</th>
-                                        <th style="min-width: 150px;">Địa chỉ</th>
-                                        <th style="min-width: 150px;">Năm sản xuất</th>
-                                        <th style="min-width: 100px;">Km đã đi</th>
-                                        <th style="min-width: 120px;">Nhiên liệu</th>
-                                        <th style="min-width: 120px;">Hộp số</th>
-                                        <th style="min-width: 100px;">Chỗ ngồi</th>
-                                        <th style="min-width: 100px;">Giá</th>
-                                        <th style="min-width: 100px;">Trạng thái</th>
-                                        <th style="min-width: 100px;">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        @foreach ($posts as $post)
-                                                <td><img src="{{ asset('storage/' . $post->url_picture) }}" alt="Image" width="100%">
-                                                </td>
-                                                <td>{{$post->title}}</td>
-                                                <td>{{$post->carBrand->name_car_brand ?? 'N/A' }}</td>
-                                                <td>{{$post->designCar->name_design_car ?? 'N/A'}}</td>
-                                                <td>{{$post->district->name ?? 'N/A'}} ,{{$post->province->name ?? 'N/A'}}</td>
-                                                <td>{{$post->year}}</td>
-                                                <td>{{$post->mileage}} km</td>
-                                                <td>{{$post->fuel_type}}</td>
-                                                <td>{{$post->gearbox}}</td>
-                                                <td>{{$post->number_seats}}</td>
-                                                <td>{{number_format($post->price, 0, ',', '.')}}</td>
-                                                <td>{{$post->status}}</td>
-                                                <td>
-                                                    <a href="{{ route('post.edit', $post->id)}}"
-                                                        class="btn btn-sm btn-primary shadow-sm"><i class="fa-solid fa-gear"></i></a>
-                                                    <button onclick="deletePost({{$post->id}})"
-                                                        class="btn btn-sm btn-danger shadow-sm"><i class="fa-solid fa-trash"></i></button>
-                                                </td>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            @if ($posts->isNotEmpty())
+                                <div class="table-responsive">
+                                    <table id="zero_config" class="table no-wrap v-middle mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th class="font-14 font-weight-medium text-dark">Hình ảnh</th>
+                                                <th class="font-14 font-weight-medium text-dark">Tiêu đề</th>
+                                                <th class="font-14 font-weight-medium text-dark">Kiểu dáng</th>
+                                                <th class="font-14 font-weight-medium text-dark">Địa chỉ</th>
+                                                <th class="font-14 font-weight-medium text-dark">Giá</th>
+                                                <th class="font-14 font-weight-medium text-dark">Trạng thái</th>
+                                                <th class="font-14 font-weight-medium text-dark">Hành động</th>
                                             </tr>
-                                        @endforeach
-                                </tbody>
-                            </table>
-                            {{ $posts->links() }}
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($posts as $post)
+                                                <tr>
+                                                    <td><img src="{{ asset('storage/' . $post->url_picture) }}" alt="Image"
+                                                            width="100%">
+                                                    </td>
+                                                    <td>{{$post->carBrand->name_car_brand ?? 'N/A' }} | {{$post->title}}</td>
+                                                    <td>{{$post->designCar->name_design_car ?? 'N/A'}}</td>
+                                                    <td>{{$post->district->name ?? 'N/A'}}, {{$post->province->name ?? 'N/A'}}</td>
+                                                    <td class="font-weight-medium text-dark border-top-0 px-2 py-4">
+                                                        {{number_format($post->price, 0, ',', '.')}} đ
+                                                    </td>
+                                                    <td>
+                                                        @if ($post->status == 'đã duyệt')
+                                                            <i class="fa fa-circle text-success font-12" data-bs-toggle="tooltip"
+                                                                data-placement="top" title="Đã duyệt"> Đã duyệt</i>
+                                                        @elseif ($post->status == 'bị từ chối')
+                                                            <i class="fa fa-circle text-danger font-12" data-bs-toggle="tooltip"
+                                                                data-placement="top" title="bị từ chối"> Bị từ chối</i>
+                                                        @else
+                                                            <i class="fa fa-circle text-primary font-12" data-bs-toggle="tooltip"
+                                                                data-placement="top" title="Chờ duyệt"> Chờ duyệt</i>
+                                                        @endif 
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('post.edit', $post->id)}}"
+                                                            class="btn btn-sm btn-primary shadow-sm"><i class=" fas fa-edit"></i></a>
+
+                                                        <button onclick="deletePost({{$post->id}})"
+                                                            class="btn btn-sm btn-danger shadow-sm"><i
+                                                                class="fas fa-trash"></i></button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <h4 class="text-center mt-4">Không có bài đăng</h4>
+                            @endif
                         </div>
-                    @else
-                        <h4 class="text-center mt-4">Không có bài đăng</h4>
-                    @endif
-
-
-
+                    </div>
                 </div>
             </div>
         </div>

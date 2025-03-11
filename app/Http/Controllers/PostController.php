@@ -17,9 +17,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with(['carBrand', 'designCar', 'province', 'district', 'user'])
-            ->where('status', 'chờ duyệt') // Lọc chỉ lấy bài post có status = 'chờ duyệt'
             ->orderBy('created_at', 'desc')
-            ->paginate(5);
+            ->get();
         $flag = true; // để phân biệt trang index với accepted
         return view('pages.admin.post.index', compact('posts', 'flag'));
     }

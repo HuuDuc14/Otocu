@@ -27,8 +27,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-        View::composer('partials.navbar', function ($view) {
+        View::composer('partials-new.header', function ($view) {
             $appointments = Appointment::where('id_seller', Auth::id())
+            ->where('status', false)
             ->orderBy('created_at', 'desc')
             ->get();
             $view->with('appointments', $appointments);

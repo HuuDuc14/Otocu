@@ -12,4 +12,9 @@ class DesignCar extends Model
     protected $table = 'design_car';
 
     protected $fillable = ['name_design_car'];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'id_design_car');
+    }
 }

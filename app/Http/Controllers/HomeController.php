@@ -133,7 +133,7 @@ class HomeController extends Controller
         $posts = Post::with(['province', 'district', 'carBrand', 'designCar'])
             ->where('id_user', Auth::id())
             ->orderBy('created_at', 'desc')
-            ->paginate(5);
+            ->get();
 
         return view('pages.user.my-post', compact('posts'));
     }

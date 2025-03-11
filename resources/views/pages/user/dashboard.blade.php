@@ -1,323 +1,529 @@
-@extends('index')
+@extends('app')
 
 @section('content')
-    <div class="container-fluid">
-
-        <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-download fa-sm text-white-50"></i> Create Room</a>
-        </div>
-
-        <!-- Content Row -->
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
         <div class="row">
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Earnings (Monthly)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-7 align-self-center">
+                <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Good Morning Jason!</h3>
+                <div class="d-flex align-items-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb m-0 p-0">
+                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+                            </li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-success shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Earnings (Annual)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-info shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                </div>
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="progress progress-sm mr-2">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
-                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Pending Requests</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-comments fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-5 align-self-center">
+                <div class="customize-input float-end">
+                    <select class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
+                        <option selected>Aug 23</option>
+                        <option value="1">July 23</option>
+                        <option value="2">Jun 23</option>
+                    </select>
                 </div>
             </div>
         </div>
-
-        <!-- Content Row -->
-
-        <div class="row">
-
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
-                <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                        <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="chart-area">
-                            <canvas id="myAreaChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
-                <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                        <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="chart-pie pt-4 pb-2">
-                            <canvas id="myPieChart"></canvas>
-                        </div>
-                        <div class="mt-4 text-center small">
-                            <span class="mr-2">
-                                <i class="fas fa-circle text-primary"></i> Direct
-                            </span>
-                            <span class="mr-2">
-                                <i class="fas fa-circle text-success"></i> Social
-                            </span>
-                            <span class="mr-2">
-                                <i class="fas fa-circle text-info"></i> Referral
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Content Row -->
-        <div class="row">
-
-            <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
-
-                <!-- Project Card Example -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Color System -->
-                <div class="row">
-                    <div class="col-lg-6 mb-4">
-                        <div class="card bg-primary text-white shadow">
-                            <div class="card-body">
-                                Primary
-                                <div class="text-white-50 small">#4e73df</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-4">
-                        <div class="card bg-success text-white shadow">
-                            <div class="card-body">
-                                Success
-                                <div class="text-white-50 small">#1cc88a</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-4">
-                        <div class="card bg-info text-white shadow">
-                            <div class="card-body">
-                                Info
-                                <div class="text-white-50 small">#36b9cc</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-4">
-                        <div class="card bg-warning text-white shadow">
-                            <div class="card-body">
-                                Warning
-                                <div class="text-white-50 small">#f6c23e</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-4">
-                        <div class="card bg-danger text-white shadow">
-                            <div class="card-body">
-                                Danger
-                                <div class="text-white-50 small">#e74a3b</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-4">
-                        <div class="card bg-secondary text-white shadow">
-                            <div class="card-body">
-                                Secondary
-                                <div class="text-white-50 small">#858796</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-4">
-                        <div class="card bg-light text-black shadow">
-                            <div class="card-body">
-                                Light
-                                <div class="text-black-50 small">#f8f9fc</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-4">
-                        <div class="card bg-dark text-white shadow">
-                            <div class="card-body">
-                                Dark
-                                <div class="text-white-50 small">#5a5c69</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-lg-6 mb-4">
-
-                <!-- Illustrations -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="text-center">
-                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                src="img/undraw_posting_photo.svg" alt="...">
-                        </div>
-                        <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow"
-                                href="https://undraw.co/">unDraw</a>, a
-                            constantly updated collection of beautiful svg images that you can use
-                            completely free and without attribution!</p>
-                        <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                            unDraw &rarr;</a>
-                    </div>
-                </div>
-
-                <!-- Approach -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                    </div>
-                    <div class="card-body">
-                        <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                            CSS bloat and poor page performance. Custom CSS classes are used to create
-                            custom components and custom utility classes.</p>
-                        <p class="mb-0">Before working with this theme, you should become familiar with the
-                            Bootstrap framework, especially the utility classes.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
     </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- *************************************************************** -->
+        <!-- Start First Cards -->
+        <!-- *************************************************************** -->
+        <div class="row">
+            <div class="col-sm-6 col-lg-3">
+                <div class="card border-end">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <div class="d-inline-flex align-items-center">
+                                    <h2 class="text-dark mb-1 font-weight-medium">236</h2>
+                                    <span
+                                        class="badge bg-primary font-12 text-white font-weight-medium rounded-pill ms-2 d-lg-block d-md-none">+18.33%</span>
+                                </div>
+                                <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">New Clients
+                                </h6>
+                            </div>
+                            <div class="ms-auto mt-md-3 mt-lg-0">
+                                <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="card border-end ">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><sup
+                                        class="set-doller">$</sup>18,306</h2>
+                                <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Earnings of
+                                    Month
+                                </h6>
+                            </div>
+                            <div class="ms-auto mt-md-3 mt-lg-0">
+                                <span class="opacity-7 text-muted"><i data-feather="dollar-sign"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="card border-end ">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <div class="d-inline-flex align-items-center">
+                                    <h2 class="text-dark mb-1 font-weight-medium">1538</h2>
+                                    <span
+                                        class="badge bg-danger font-12 text-white font-weight-medium rounded-pill ms-2 d-md-none d-lg-block">-18.33%</span>
+                                </div>
+                                <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">New Projects
+                                </h6>
+                            </div>
+                            <div class="ms-auto mt-md-3 mt-lg-0">
+                                <span class="opacity-7 text-muted"><i data-feather="file-plus"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="card ">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <h2 class="text-dark mb-1 font-weight-medium">864</h2>
+                                <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Projects</h6>
+                            </div>
+                            <div class="ms-auto mt-md-3 mt-lg-0">
+                                <span class="opacity-7 text-muted"><i data-feather="globe"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- *************************************************************** -->
+        <!-- End First Cards -->
+        <!-- *************************************************************** -->
+        <!-- *************************************************************** -->
+        <!-- Start Sales Charts Section -->
+        <!-- *************************************************************** -->
+        <div class="row">
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Total Sales</h4>
+                        <div id="campaign-v2" class="mt-2" style="height:283px; width:100%;"></div>
+                        <ul class="list-style-none mb-0">
+                            <li>
+                                <i class="fas fa-circle text-primary font-10 me-2"></i>
+                                <span class="text-muted">Direct Sales</span>
+                                <span class="text-dark float-end font-weight-medium">$2346</span>
+                            </li>
+                            <li class="mt-3">
+                                <i class="fas fa-circle text-danger font-10 me-2"></i>
+                                <span class="text-muted">Referral Sales</span>
+                                <span class="text-dark float-end font-weight-medium">$2108</span>
+                            </li>
+                            <li class="mt-3">
+                                <i class="fas fa-circle text-cyan font-10 me-2"></i>
+                                <span class="text-muted">Affiliate Sales</span>
+                                <span class="text-dark float-end font-weight-medium">$1204</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Net Income</h4>
+                        <div class="net-income mt-4 position-relative" style="height:294px;"></div>
+                        <ul class="list-inline text-center mt-5 mb-2">
+                            <li class="list-inline-item text-muted fst-italic">Sales for this month</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Earning by Location</h4>
+                        <div class="" style="height:180px">
+                            <div id="visitbylocate" style="height:100%"></div>
+                        </div>
+                        <div class="row mb-3 align-items-center mt-1 mt-5">
+                            <div class="col-4 text-end">
+                                <span class="text-muted font-14">India</span>
+                            </div>
+                            <div class="col-5">
+                                <div class="progress" style="height: 5px;">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"
+                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="col-3 text-end">
+                                <span class="mb-0 font-14 text-dark font-weight-medium">28%</span>
+                            </div>
+                        </div>
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-4 text-end">
+                                <span class="text-muted font-14">UK</span>
+                            </div>
+                            <div class="col-5">
+                                <div class="progress" style="height: 5px;">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 74%"
+                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="col-3 text-end">
+                                <span class="mb-0 font-14 text-dark font-weight-medium">21%</span>
+                            </div>
+                        </div>
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-4 text-end">
+                                <span class="text-muted font-14">USA</span>
+                            </div>
+                            <div class="col-5">
+                                <div class="progress" style="height: 5px;">
+                                    <div class="progress-bar bg-cyan" role="progressbar" style="width: 60%"
+                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="col-3 text-end">
+                                <span class="mb-0 font-14 text-dark font-weight-medium">18%</span>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-4 text-end">
+                                <span class="text-muted font-14">China</span>
+                            </div>
+                            <div class="col-5">
+                                <div class="progress" style="height: 5px;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 50%"
+                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="col-3 text-end">
+                                <span class="mb-0 font-14 text-dark font-weight-medium">12%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- *************************************************************** -->
+        <!-- End Sales Charts Section -->
+        <!-- *************************************************************** -->
+        <!-- *************************************************************** -->
+        <!-- Start Location and Earnings Charts Section -->
+        <!-- *************************************************************** -->
+        <div class="row">
+            <div class="col-md-6 col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start">
+                            <h4 class="card-title mb-0">Earning Statistics</h4>
+                            <div class="ms-auto">
+                                <div class="dropdown sub-dropdown">
+                                    <button class="btn btn-link text-muted dropdown-toggle" type="button"
+                                        id="dd1" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <i data-feather="more-vertical"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dd1">
+                                        <a class="dropdown-item" href="#">Insert</a>
+                                        <a class="dropdown-item" href="#">Update</a>
+                                        <a class="dropdown-item" href="#">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pl-4 mb-5">
+                            <div class="stats ct-charts position-relative" style="height: 315px;"></div>
+                        </div>
+                        <ul class="list-inline text-center mt-4 mb-0">
+                            <li class="list-inline-item text-muted fst-italic">Earnings for this month</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Recent Activity</h4>
+                        <div class="mt-4 activity">
+                            <div class="d-flex align-items-start border-left-line pb-3">
+                                <div>
+                                    <a href="javascript:void(0)" class="btn btn-info btn-circle mb-2 btn-item">
+                                        <i data-feather="shopping-cart"></i>
+                                    </a>
+                                </div>
+                                <div class="ms-3 mt-2">
+                                    <h5 class="text-dark font-weight-medium mb-2">New Product Sold!</h5>
+                                    <p class="font-14 mb-2 text-muted">John Musa just purchased <br> Cannon 5M
+                                        Camera.
+                                    </p>
+                                    <span class="font-weight-light font-14 text-muted">10 Minutes Ago</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start border-left-line pb-3">
+                                <div>
+                                    <a href="javascript:void(0)"
+                                        class="btn btn-danger btn-circle mb-2 btn-item">
+                                        <i data-feather="message-square"></i>
+                                    </a>
+                                </div>
+                                <div class="ms-3 mt-2">
+                                    <h5 class="text-dark font-weight-medium mb-2">New Support Ticket</h5>
+                                    <p class="font-14 mb-2 text-muted">Richardson just create support <br>
+                                        ticket</p>
+                                    <span class="font-weight-light font-14 text-muted">25 Minutes Ago</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start border-left-line">
+                                <div>
+                                    <a href="javascript:void(0)" class="btn btn-cyan btn-circle mb-2 btn-item">
+                                        <i data-feather="bell"></i>
+                                    </a>
+                                </div>
+                                <div class="ms-3 mt-2">
+                                    <h5 class="text-dark font-weight-medium mb-2">Notification Pending Order!
+                                    </h5>
+                                    <p class="font-14 mb-2 text-muted">One Pending order from Ryne <br> Doe</p>
+                                    <span class="font-weight-light font-14 mb-1 d-block text-muted">2 Hours
+                                        Ago</span>
+                                    <a href="javascript:void(0)"
+                                        class="font-14 border-bottom pb-1 border-info">Load More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- *************************************************************** -->
+        <!-- End Location and Earnings Charts Section -->
+        <!-- *************************************************************** -->
+        <!-- *************************************************************** -->
+        <!-- Start Top Leader Table -->
+        <!-- *************************************************************** -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-4">
+                            <h4 class="card-title">Top Leaders</h4>
+                            <div class="ms-auto">
+                                <div class="dropdown sub-dropdown">
+                                    <button class="btn btn-link text-muted dropdown-toggle" type="button"
+                                        id="dd1" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <i data-feather="more-vertical"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd1">
+                                        <a class="dropdown-item" href="#">Insert</a>
+                                        <a class="dropdown-item" href="#">Update</a>
+                                        <a class="dropdown-item" href="#">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table no-wrap v-middle mb-0">
+                                <thead>
+                                    <tr class="border-0">
+                                        <th class="border-0 font-14 font-weight-medium text-muted">Team Lead
+                                        </th>
+                                        <th class="border-0 font-14 font-weight-medium text-muted px-2">Project
+                                        </th>
+                                        <th class="border-0 font-14 font-weight-medium text-muted">Team</th>
+                                        <th class="border-0 font-14 font-weight-medium text-muted text-center">
+                                            Status
+                                        </th>
+                                        <th class="border-0 font-14 font-weight-medium text-muted text-center">
+                                            Weeks
+                                        </th>
+                                        <th class="border-0 font-14 font-weight-medium text-muted">Budget</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border-top-0 px-2 py-4">
+                                            <div class="d-flex no-block align-items-center">
+                                                <div class="me-3"><img
+                                                        src="../assets/images/users/widget-table-pic1.jpg"
+                                                        alt="user" class="rounded-circle" width="45"
+                                                        height="45" /></div>
+                                                <div class="">
+                                                    <h5 class="text-dark mb-0 font-16 font-weight-medium">Hanna
+                                                        Gover</h5>
+                                                    <span class="text-muted font-14">hgover@gmail.com</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="border-top-0 text-muted px-2 py-4 font-14">Elite Admin</td>
+                                        <td class="border-top-0 px-2 py-4">
+                                            <div class="popover-icon">
+                                                <a class="btn btn-primary rounded-circle btn-circle font-12"
+                                                    href="javascript:void(0)">DS</a>
+                                                <a class="btn btn-danger rounded-circle btn-circle font-12 popover-item"
+                                                    href="javascript:void(0)">SS</a>
+                                                <a class="btn btn-cyan rounded-circle btn-circle font-12 popover-item"
+                                                    href="javascript:void(0)">RP</a>
+                                                <a class="btn btn-success text-white rounded-circle btn-circle font-20"
+                                                    href="javascript:void(0)">+</a>
+                                            </div>
+                                        </td>
+                                        <td class="border-top-0 text-center px-2 py-4"><i
+                                                class="fa fa-circle text-primary font-12"
+                                                data-bs-toggle="tooltip" data-placement="top"
+                                                title="In Testing"></i></td>
+                                        <td
+                                            class="border-top-0 text-center font-weight-medium text-muted px-2 py-4">
+                                            35
+                                        </td>
+                                        <td class="font-weight-medium text-dark border-top-0 px-2 py-4">$96K
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-2 py-4">
+                                            <div class="d-flex no-block align-items-center">
+                                                <div class="me-3"><img
+                                                        src="../assets/images/users/widget-table-pic2.jpg"
+                                                        alt="user" class="rounded-circle" width="45"
+                                                        height="45" /></div>
+                                                <div class="">
+                                                    <h5 class="text-dark mb-0 font-16 font-weight-medium">Daniel
+                                                        Kristeen
+                                                    </h5>
+                                                    <span class="text-muted font-14">Kristeen@gmail.com</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-muted px-2 py-4 font-14">Real Homes WP Theme</td>
+                                        <td class="px-2 py-4">
+                                            <div class="popover-icon">
+                                                <a class="btn btn-primary rounded-circle btn-circle font-12"
+                                                    href="javascript:void(0)">DS</a>
+                                                <a class="btn btn-danger rounded-circle btn-circle font-12 popover-item"
+                                                    href="javascript:void(0)">SS</a>
+                                                <a class="btn btn-success text-white rounded-circle btn-circle font-20"
+                                                    href="javascript:void(0)">+</a>
+                                            </div>
+                                        </td>
+                                        <td class="text-center px-2 py-4"><i
+                                                class="fa fa-circle text-success font-12"
+                                                data-bs-toggle="tooltip" data-placement="top" title="Done"></i>
+                                        </td>
+                                        <td class="text-center text-muted font-weight-medium px-2 py-4">32</td>
+                                        <td class="font-weight-medium text-dark px-2 py-4">$85K</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-2 py-4">
+                                            <div class="d-flex no-block align-items-center">
+                                                <div class="me-3"><img
+                                                        src="../assets/images/users/widget-table-pic3.jpg"
+                                                        alt="user" class="rounded-circle" width="45"
+                                                        height="45" /></div>
+                                                <div class="">
+                                                    <h5 class="text-dark mb-0 font-16 font-weight-medium">Julian
+                                                        Josephs
+                                                    </h5>
+                                                    <span class="text-muted font-14">Josephs@gmail.com</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-muted px-2 py-4 font-14">MedicalPro WP Theme</td>
+                                        <td class="px-2 py-4">
+                                            <div class="popover-icon">
+                                                <a class="btn btn-primary rounded-circle btn-circle font-12"
+                                                    href="javascript:void(0)">DS</a>
+                                                <a class="btn btn-danger rounded-circle btn-circle font-12 popover-item"
+                                                    href="javascript:void(0)">SS</a>
+                                                <a class="btn btn-cyan rounded-circle btn-circle font-12 popover-item"
+                                                    href="javascript:void(0)">RP</a>
+                                                <a class="btn btn-success text-white rounded-circle btn-circle font-20"
+                                                    href="javascript:void(0)">+</a>
+                                            </div>
+                                        </td>
+                                        <td class="text-center px-2 py-4"><i
+                                                class="fa fa-circle text-primary font-12"
+                                                data-bs-toggle="tooltip" data-placement="top" title="Done"></i>
+                                        </td>
+                                        <td class="text-center text-muted font-weight-medium px-2 py-4">29</td>
+                                        <td class="font-weight-medium text-dark px-2 py-4">$81K</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border-bottom-0 px-2 py-4">
+                                            <div class="d-flex no-block align-items-center">
+                                                <div class="me-3"><img
+                                                        src="../assets/images/users/widget-table-pic4.jpg"
+                                                        alt="user" class="rounded-circle" width="45"
+                                                        height="45" /></div>
+                                                <div class="">
+                                                    <h5 class="text-dark mb-0 font-16 font-weight-medium">Jan
+                                                        Petrovic
+                                                    </h5>
+                                                    <span class="text-muted font-14">hgover@gmail.com</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="border-bottom-0 text-muted px-2 py-4 font-14">Hosting Press
+                                            HTML</td>
+                                        <td class="border-bottom-0 px-2 py-4">
+                                            <div class="popover-icon">
+                                                <a class="btn btn-primary rounded-circle btn-circle font-12"
+                                                    href="javascript:void(0)">DS</a>
+                                                <a class="btn btn-success text-white font-20 rounded-circle btn-circle"
+                                                    href="javascript:void(0)">+</a>
+                                            </div>
+                                        </td>
+                                        <td class="border-bottom-0 text-center px-2 py-4"><i
+                                                class="fa fa-circle text-danger font-12"
+                                                data-bs-toggle="tooltip" data-placement="top"
+                                                title="In Progress"></i></td>
+                                        <td
+                                            class="border-bottom-0 text-center text-muted font-weight-medium px-2 py-4">
+                                            23</td>
+                                        <td class="border-bottom-0 font-weight-medium text-dark px-2 py-4">$80K
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- *************************************************************** -->
+        <!-- End Top Leader Table -->
+        <!-- *************************************************************** -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center text-muted">
+        All Rights Reserved by Freedash. Designed and Developed by <a
+            href="https://adminmart.com/">Adminmart</a>.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
 @endsection

@@ -34,14 +34,16 @@
 
     <div id="preloader">
         {{-- <div class="loader"></div> --}}
-        <div class="loop cubes">
-            <div class="itemc cubes"></div>
-            <div class="itemc cubes"></div>
-            <div class="itemc cubes"></div>
-            <div class="itemc cubes"></div>
-            <div class="itemc cubes"></div>
-            <div class="itemc cubes"></div>
-        </div>
+        <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+            <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20"
+                stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20"
+                stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20"
+                stroke-dasharray="0 440" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20"
+                stroke-dasharray="0 440" stroke-linecap="round"></circle>
+        </svg>
     </div>
 
     <!-- Page Wrapper -->
@@ -247,27 +249,10 @@
         mileageValue.textContent = mileageRange.value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
     </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let minPriceInput = document.getElementById("min_price_range");
-            let maxPriceInput = document.getElementById("max_price_range");
-            let minPriceValue = document.getElementById("min_price_value");
-            let maxPriceValue = document.getElementById("max_price_value");
-        
-            function updatePriceDisplay() {
-                minPriceValue.textContent = new Intl.NumberFormat('vi-VN').format(minPriceInput.value);
-                maxPriceValue.textContent = new Intl.NumberFormat('vi-VN').format(maxPriceInput.value);
-            }
-        
-            // Cập nhật khi giá trị thay đổi
-            minPriceInput.addEventListener("input", updatePriceDisplay);
-            maxPriceInput.addEventListener("input", updatePriceDisplay);
-        
-            // Gọi ngay khi trang load để giữ giá trị đúng
-            updatePriceDisplay();
-        });
-        </script>
-        
+
+
+
+
 
 </body>
 

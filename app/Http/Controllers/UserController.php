@@ -15,8 +15,16 @@ class UserController extends Controller
     public function index()
     {
         $users = User::where('role', 'user')
-        ->orderBy('created_at', 'desc') // Sắp xếp theo thời gian tạo mới nhất trước
-        ->paginate(5);
+        ->orderBy('created_at', 'desc')
+        ->withCount('posts')  // Lấy tổng số bài viết
+        ->withCount(['posts as posts_approved_count' => function ($query) {
+            $query->where('status', 'đã duyệt');  // Điều kiện chỉ đếm bài viết có status = 'đã duyệt'
+        }])
+        ->withCount(['posts as posts_refused_count' => function ($query) {
+            $query->where('status', 'bị từ chối');  // Điều kiện chỉ đếm bài viết có status = 'đã duyệt'
+        }])
+        ->get();
+
         return view('pages.admin.user.index')->with('users', $users);
     }
 

@@ -1,7 +1,7 @@
-@extends('index')
+@extends('app')
 
 @section('content')
-<div class="container-fluid">
+<div class="page-wrapper">
 
     <!-- 404 Error Text -->
     <div class="text-center">

@@ -1,0 +1,188 @@
+/* From Uiverse.io by bedirhan-arslan */
+.formField {
+    margin-top: 8px;
+    position: relative;
+}
+
+.formField input {
+    padding: 10px 16px;
+    outline: none;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    color: #333;
+    font-size: 16px;
+    font-weight: 400;
+    transition: 0.3sease-in-out;
+    box-shadow: 0 0 0 5px transparent;
+}
+
+.formField input:hover,
+.formField input:focus {
+    box-shadow: 0 0 0 2px #333;
+}
+
+.formField span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 8px 15px;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.formField .status {
+    transform: translateY(-38px) translateX(-5px) scale(0.95);
+    transition: 0.3s ease-in-out;
+}
+
+.formField .select {
+    padding: 10px 16px;
+    outline: none;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    color: #333;
+    font-size: 16px;
+    font-weight: 400;
+    transition: 0.3sease-in-out;
+    box-shadow: 0 0 0 5px transparent;
+}
+
+.formField .icon {
+    position: absolute;
+    right: 16px;
+    bottom: 14px;
+    font-size: 18px;
+}
+
+.formField input:focus+span,
+.formField input:valid+span {
+    transform: translateY(-38px) translateX(-5px) scale(0.95);
+    transition: 0.3s ease-in-out;
+}
+
+/* btn */
+
+/* From Uiverse.io by mrhyddenn */ 
+.btn-form {
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 7px;
+    border: 1px solid rgb(34, 255, 0);
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: transparent;
+    color: rgb(34, 255, 0);
+    overflow: hidden;
+    box-shadow: 0 0 0 0 transparent;
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+  }
+  
+  .btn-form:hover {
+    background: rgb(34, 255, 0);
+    box-shadow: 0 0 30px 5px rgb(34, 255, 0);
+    color: #fff;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+  }
+  
+  .btn-form:hover::before {
+    -webkit-animation: sh02 0.5s 0s linear;
+    -moz-animation: sh02 0.5s 0s linear;
+    animation: sh02 0.5s 0s linear;
+  }
+  
+  .btn-form::before {
+    content: '';
+    display: block;
+    width: 0px;
+    height: 86%;
+    position: absolute;
+    top: 7%;
+    left: 0%;
+    opacity: 0;
+    background: #fff;
+    box-shadow: 0 0 50px 30px #fff;
+    -webkit-transform: skewX(-20deg);
+    -moz-transform: skewX(-20deg);
+    -ms-transform: skewX(-20deg);
+    -o-transform: skewX(-20deg);
+    transform: skewX(-20deg);
+  }
+
+  .btn-cancel{
+    border: 1px solid rgb(255, 0, 0);
+    color: rgb(255, 0, 0);
+    margin-right: 20px;
+  }
+
+  .btn-cancel:hover {
+    background: rgb(255, 0, 0);
+    box-shadow: 0 0 30px 5px rgb(255, 0, 0);
+    color: #fff;
+  }
+  
+  @keyframes sh02 {
+    from {
+      opacity: 0;
+      left: 0%;
+    }
+  
+    50% {
+      opacity: 1;
+    }
+  
+    to {
+      opacity: 0;
+      left: 100%;
+    }
+  }
+  
+  .btn-form:active {
+    box-shadow: 0 0 0 0 transparent;
+    -webkit-transition: box-shadow 0.2s ease-in;
+    -moz-transition: box-shadow 0.2s ease-in;
+    transition: box-shadow 0.2s ease-in;
+  }
+
+  /* From Uiverse.io by PriyanshuGupta28 */ 
+.slider-range {
+  width: 100%;
+  height: 3px;
+  border-radius: 5px;
+}
+
+/* From Uiverse.io by escannord */
+/* inputimage */
+.input-image {
+  max-width: 190px;
+  display: none;
+}
+
+.labelFile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 190px;
+  border: 2px dashed #ccc;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+  color: #404040;
+  cursor: pointer;
+}
+
+#imagePreview{
+  width: 100%;
+  margin-top: 24px;
+}
+
+
+  

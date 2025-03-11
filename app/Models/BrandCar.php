@@ -11,5 +11,10 @@ class BrandCar extends Model
 
     protected $table = 'car_brand';
 
-    protected $fillable = ['name_car_brand'];
+    protected $fillable = ['name_car_brand', 'logo'];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'id_car_brand');
+    }
 }

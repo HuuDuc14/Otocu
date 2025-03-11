@@ -1,64 +1,62 @@
-@extends('index')
+@extends('app')
 @section('content')
-    <div class="container-fluid">
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Users</h1>
-            {{-- <a href="{{route('nhanvien.create')}}"
-                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Create
-                staff</a> --}}
+
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-7 align-self-center">
+                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">
+                        Người dùng
+                    </h4>
+                    <div class="d-flex align-items-center">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb m-0 p-0">
+                                <li class="breadcrumb-item">Tất cả người dùng</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="shadow">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <form class="form-inline mw-100 navbar-search" action="{{route('user.search')}}">
-                        @csrf
-                        <div class="input-group">
-                            <input type="search" class="form-control bg-light border-0 small" placeholder="Search user..."
-                                aria-label="Search" aria-describedby="basic-addon2" name="search" id="form1">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="zero_config" class="table no-wrap v-middle mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="font-14 font-weight-medium text-dark">id</th>
+                                            <th class="font-14 font-weight-medium text-dark">Tên người dùng</th>
+                                            <th class="font-14 font-weight-medium text-dark">Email</th>
+                                            <th class="font-14 font-weight-medium text-dark">Số điện thoại</th>
+                                            <th class="font-14 font-weight-medium text-primary">Số bài viết</th>
+                                            <th class="font-14 font-weight-medium text-success">Được duyệt</th>
+                                            <th class="font-14 font-weight-medium text-danger">Từ chối</th>
+                                            <th class="font-14 font-weight-medium text-dark">Hành động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($users as $user)
+                                            <td class="border-top-0 px-2 py-4 text-dark">{{$user->id}}</td>
+                                            <td>{{$user->username}}</td>
+                                            <td>{{$user->email}}</td>
+                                            <td>{{$user->phone_number}}</td>
+                                            <td class="font-weight-medium text-primary">{{$user->posts_count}}</td>
+                                            <td class="font-weight-medium text-success">{{$user->posts_approved_count}}</td>
+                                            <td class="font-weight-medium text-danger">{{$user->posts_refused_count}}</td>
+                                            <td>
+                                                <a href="{{route('user.delete', $user->id)}}"
+                                                    class="btn btn-sm btn-danger shadow-sm">Khóa tài khoản</a>
+                                            </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                    </form>
-
-                    <table class="table table-bordered mt-5" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Phone number</th>
-                                <th>Role</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                @foreach ($users as $user)
-                                        <td>{{$user->id}}</td>
-                                        <td>{{$user->username}}</td>
-                                        <td>{{$user->email}}</td>
-                                        <td>{{$user->phone_number}}</td>
-                                        <td>{{$user->role}}</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-primary shadow-sm"
-                                                onclick="confirmMakeStaff({{ $user->id }}, '{{ $user->username }}')">
-                                                Staff
-                                            </button>
-
-                                            <a href="{{route('user.delete', $user->id)}}"
-                                                class="btn btn-sm btn-danger shadow-sm">Xóa</a>
-                                        </td>
-
-
-                                    </tr>
-                                @endforeach
-                        </tbody>
-                    </table>
-
-                    {{ $users->links() }}
+                    </div>
                 </div>
             </div>
         </div>

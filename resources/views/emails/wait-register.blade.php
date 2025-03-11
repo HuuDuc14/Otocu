@@ -1,8 +1,10 @@
-@extends('index')
+@extends('app')
 
 @section('content')
-    <div class="container-fluid">
-        <h2>Vui lòng kiểm tra email vừa đăng ký để xác thực tài khoản</h2>
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <h2>Vui lòng kiểm tra email vừa đăng ký để xác thực tài khoản</h2>
+        </div>
     </div>
 
     @if (session('success'))
